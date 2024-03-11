@@ -3,6 +3,7 @@
 import * as z from "zod";
 import axios from "axios";
 import { useState } from "react";
+import MuxPlayer from "@mux/mux-player-react";
 
 import { Chapter, MuxData } from "@prisma/client";
 import { useRouter } from "next/navigation";
@@ -72,8 +73,7 @@ export default function ChapterVideoForm({
           </div>
         ) : (
           <div className="relative aspect-video mt-2">
-            {/* TODO Place video */}
-            Video Uploaded
+            <MuxPlayer playbackId={initialData?.muxData?.playbackId || ""} />
           </div>
         ))}
       {isEditing && (
