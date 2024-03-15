@@ -2,14 +2,13 @@
 
 import * as z from "zod";
 import axios from "axios";
-
-import { Attachment, Course } from "@prisma/client";
-import { Button } from "@/components/ui/button";
-import { File, ImageIcon, Loader2, Pencil, PlusCircle, X } from "lucide-react";
 import { useState } from "react";
+import { Attachment, Course } from "@prisma/client";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
+
+import { Button } from "@/components/ui/button";
+import { File, Loader2, PlusCircle, X } from "lucide-react";
 import FileUpload from "@/components/file-upload";
 
 interface AttachmentFormProps {

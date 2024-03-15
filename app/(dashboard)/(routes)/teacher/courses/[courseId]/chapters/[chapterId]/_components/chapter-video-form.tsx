@@ -4,13 +4,13 @@ import * as z from "zod";
 import axios from "axios";
 import { useState } from "react";
 import MuxPlayer from "@mux/mux-player-react";
-
-import { Chapter, MuxData } from "@prisma/client";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import { Pencil, PlusCircle, Video } from "lucide-react";
+import { Chapter, MuxData } from "@prisma/client";
 import toast from "react-hot-toast";
+
+import { Button } from "@/components/ui/button";
 import FileUpload from "@/components/file-upload";
+import { Pencil, PlusCircle, Video } from "lucide-react";
 
 interface ChapterVideoFormProps {
   initialData: Chapter & { muxData?: MuxData | null };

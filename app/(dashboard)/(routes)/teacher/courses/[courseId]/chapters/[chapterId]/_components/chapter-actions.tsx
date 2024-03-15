@@ -1,13 +1,14 @@
 "use client";
 
-import ConfirmModal from "@/components/modals/confirm-modal";
-import { Button } from "@/components/ui/button";
-import { useConfettiStore } from "@/hooks/use-confetti-store";
 import axios from "axios";
-import { Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
+
+import ConfirmModal from "@/components/modals/confirm-modal";
+import { Button } from "@/components/ui/button";
+import { useConfettiStore } from "@/hooks/use-confetti-store";
+import { Trash } from "lucide-react";
 
 interface ChapterActionsProps {
   disabled: boolean;

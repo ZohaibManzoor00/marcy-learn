@@ -4,6 +4,10 @@ import * as z from "zod";
 import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { useState } from "react";
+import { Chapter } from "@prisma/client";
+import { useRouter } from "next/navigation";
 
 import {
   Form,
@@ -11,18 +15,11 @@ import {
   FormDescription,
   FormField,
   FormItem,
-  FormMessage,
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
-import { Pencil } from "lucide-react";
-import { useState } from "react";
-import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Chapter } from "@prisma/client";
-import { Editor } from "@/components/editer";
-import { Preview } from "@/components/preview";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Pencil } from "lucide-react";
 
 interface ChapterAccessFormProps {
   initialData: Chapter;

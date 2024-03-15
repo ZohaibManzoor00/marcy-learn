@@ -1,14 +1,15 @@
 "use client";
 
 import axios from "axios";
-import MuxPlayer from "@mux/mux-player-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
-import { useRouter } from "next/navigation";
-import { Loader2, Lock } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { useConfettiStore } from "@/hooks/use-confetti-store";
+import MuxPlayer from "@mux/mux-player-react";
+
+import { Loader2, Lock } from "lucide-react";
 
 interface VideoPlayerProps {
   playbackId: string;
@@ -43,8 +44,8 @@ export const VideoPlayer = ({
 
         if (!nextChapterId) confetti.onOpen();
 
-        toast.success("Progress updated");
-        
+        toast.success("You have finished this course");
+
         if (nextChapterId) {
           router.push(`/courses/${courseId}/chapters/${nextChapterId}`);
         }

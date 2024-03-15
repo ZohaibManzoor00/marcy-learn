@@ -1,6 +1,7 @@
 import { auth } from "@clerk/nextjs";
 import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
+
 import IconBadge from "@/components/icon-badge";
 import {
   CircleDollarSign,
