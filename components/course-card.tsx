@@ -5,6 +5,7 @@ import Link from "next/link";
 import IconBadge from "@/components/icon-badge";
 import { BookOpen } from "lucide-react";
 import { formatPrice } from "@/lib/format";
+import CourseProgress from "./course-progress";
 
 interface CourseCardProps {
   id: string;
@@ -26,7 +27,7 @@ export default function CourseCard({
   category,
 }: CourseCardProps) {
 
-    return (
+  return (
     <Link href={`/courses/${id}`}>
       <div className="group hover:shadow-sm transition overflow-hidden border rounded-lg p-3 h-full">
         <div className="relative w-full aspect-video rounded-md overflow-hidden">
@@ -45,13 +46,25 @@ export default function CourseCard({
               </span>
             </div>
           </div>
-          {progress !== null ? (
-            <div>TODO: Progress Component</div>
+          {/* SHOW PROGRESS WHEN START INSTEAD */}
+          <CourseProgress
+            variant={progress === 100 ? "success" : "default"}
+            size="sm"
+            value={progress || 0}
+          />
+          {/* {progress !== null ? (
+            <div>
+              <CourseProgress
+                variant={progress === 100 ? "success" : "default"}
+                size="sm"
+                value={progress}
+              />
+            </div>
           ) : (
             <p className="text-md md:text-sm font-medium text-slate-700">
               {formatPrice(price)}
             </p>
-          )}
+          )} */}
         </div>
       </div>
     </Link>

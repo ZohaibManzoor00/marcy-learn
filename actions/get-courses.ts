@@ -26,22 +26,24 @@ export const getCourses = async ({
       include: {
         category: true,
         chapters: { where: { isPublished: true }, select: { id: true } },
-        purchases: { where: { userId } },
+        // purchases: { where: { userId } },
       },
       orderBy: { createdAt: "desc" },
     });
 
-    const coursesWithProgress: CourseWithProgressWithCategory[] = await Promise.all(
-      courses.map(async course => {
-        if (course.purchases.length === 0) return { ...course, progress: null }
+    const coursesWithProgress: CourseWithProgressWithCategory[] =
+      await Promise.all(
+        courses.map(async (course) => {
+          // IF PAYMENT
+          // if (course.purchases.length === 0) return { ...course, progress: null }
 
-        const progressPercentage = await getProgress(userId, course.id)
+          const progressPercentage = await getProgress(userId, course.id);
 
-        return { ...course, progress: progressPercentage }
-      })
-    )
+          return { ...course, progress: progressPercentage };
+        })
+      );
 
-    return coursesWithProgress
+    return coursesWithProgress;
   } catch (err) {
     console.log("[GET_COURSES]", err);
     return [];
