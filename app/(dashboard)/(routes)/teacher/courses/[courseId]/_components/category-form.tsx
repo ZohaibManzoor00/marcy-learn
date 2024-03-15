@@ -20,7 +20,17 @@ import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
 import { Course } from "@prisma/client";
-import Combobox from "@/components/ui/combobox";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { DropdownMenuRadioGroupDemo } from "@/components/ui/drop-down-radio";
+import { DropdownMenuCategory } from "@/components/ui/drop-down-category";
 
 interface CategoryFormProps {
   initialData: Course;
@@ -100,7 +110,7 @@ export default function CategoryForm({
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Combobox options={options} {...field}/>
+                    <DropdownMenuCategory options={options} {...field}/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>

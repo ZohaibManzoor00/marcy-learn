@@ -6,7 +6,9 @@ import { VideoPlayer } from "./_components/video-player";
 import CourseEnrollButton from "./_components/course-enroll-button";
 import { Separator } from "@/components/ui/separator";
 import { Preview } from "@/components/preview";
-import { File } from "lucide-react";
+import { ArrowBigRight, File, XCircle } from "lucide-react";
+import CourseProgressButton from "./_components/course-progress-button";
+import { Button } from "@/components/ui/button";
 
 export default async function ChapterIdPage({
   params,
@@ -33,7 +35,8 @@ export default async function ChapterIdPage({
   if (!chapter || !course) return redirect("/");
 
   const isLocked = !chapter.isFree && !purchase;
-  const completeOnEnd = !!purchase && !userProgress?.isCompleted;
+  // const completeOnEnd = !!purchase && !userProgress?.isCompleted;
+  const completeOnEnd = !userProgress?.isCompleted;
 
   return (
     <div>
@@ -59,18 +62,39 @@ export default async function ChapterIdPage({
             completeOnEnd={completeOnEnd}
           />
         </div>
+        {/* <div className="flex justify-end pr-4">
+          {!completeOnEnd && nextChapter?.id &&(
+            <NextChapterButton
+              chapterId={params.chapterId}
+              courseId={params.courseId}
+              nextChapterId={nextChapter?.id}
+              isCompleted={!!userProgress?.isCompleted}
+            />
+          )}
+        </div> */}
         <div>
           <div className="p-4 flex flex-col md:flex-row items-center justify-between">
             <h2 className="text-2xl font-semibold mb-2">{chapter.title}</h2>
-            {purchase ? (
-              // add course progress button
-              <div>Add btn </div>
+            <CourseProgressButton
+              chapterId={params.chapterId}
+              courseId={params.courseId}
+              nextChapterId={nextChapter?.id}
+              isCompleted={!!userProgress?.isCompleted}
+            />
+            {/* IF PURCHASES */}
+            {/* {purchase ? (
+              <CourseProgressButton
+                chapterId={params.chapterId}
+                courseId={params.courseId}
+                nextChapterId={nextChapter?.id}
+                isCompleted={!!userProgress?.isCompleted}
+              />
             ) : (
               <CourseEnrollButton
                 courseId={params.courseId}
                 price={course.price!}
               />
-            )}
+            )} */}
           </div>
           <Separator />
           <div>
