@@ -1,6 +1,5 @@
 import { db } from "@/lib/db";
 import { Category, Chapter, Course } from "@prisma/client";
-import { NextResponse } from "next/server";
 import { getProgress } from "./get-progress";
 
 type CourseWithProgressWithCategory = Course & {
@@ -39,7 +38,7 @@ export const getDashboardCourses = async (
       (course) => (course.progress ?? 0) < 100
     );
 
-    return { completedCourses, coursesInProgress };
+    return { completedCourses, coursesInProgress}
   } catch (err) {
     console.log("[GET_DASHBOARD_COURSES]", err);
     return { completedCourses: [], coursesInProgress: [] };
