@@ -2,14 +2,14 @@
 
 import * as z from "zod";
 import axios from "axios";
-
-import { Course } from "@prisma/client";
-import { Button } from "@/components/ui/button";
-import { ImageIcon, Pencil, PlusCircle } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { Course } from "@prisma/client";
+
+import { Button } from "@/components/ui/button";
+import { ImageIcon, Pencil, PlusCircle } from "lucide-react";
 import FileUpload from "@/components/file-upload";
 
 interface ImageFormProps {

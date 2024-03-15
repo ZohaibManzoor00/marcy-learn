@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Chapter } from "@prisma/client";
+
 import {
   DragDropContext,
   Droppable,
@@ -9,8 +10,8 @@ import {
   DropResult,
 } from "@hello-pangea/dnd";
 import { cn } from "@/lib/utils";
-import { Grip, Pencil } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Grip, Pencil } from "lucide-react";
 
 interface ChaptersListProps {
   items: Chapter[];

@@ -1,14 +1,14 @@
-import { getChapter } from "@/actions/get-chapter";
-import Banner from "@/components/banner";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
-import { VideoPlayer } from "./_components/video-player";
-import CourseEnrollButton from "./_components/course-enroll-button";
+
+import { getChapter } from "@/actions/get-chapter";
+import Banner from "@/components/banner";
 import { Separator } from "@/components/ui/separator";
 import { Preview } from "@/components/preview";
-import { ArrowBigRight, File, XCircle } from "lucide-react";
+import { File } from "lucide-react";
+
+import { VideoPlayer } from "./_components/video-player";
 import CourseProgressButton from "./_components/course-progress-button";
-import { Button } from "@/components/ui/button";
 
 export default async function ChapterIdPage({
   params,
@@ -35,19 +35,24 @@ export default async function ChapterIdPage({
   if (!chapter || !course) return redirect("/");
 
   const isLocked = !chapter.isFree && !purchase;
-  // const completeOnEnd = !!purchase && !userProgress?.isCompleted;
   const completeOnEnd = !userProgress?.isCompleted;
 
   return (
     <div>
       {" "}
-      {userProgress?.isCompleted && (
+      {userProgress?.isCompleted && nextChapter?.id && (
         <Banner variant="success" label="You already completed this chapter." />
       )}
       {isLocked && (
         <Banner
           variant="warning"
           label="You need to purchase this course to watch this chapter."
+        />
+      )}
+      {!nextChapter && userProgress?.isCompleted && (
+        <Banner
+          variant="success"
+          label="Congratulations you have finished this course!"
         />
       )}
       <div className="flex flex-col max-w-4xl mx-auto pb-20">
@@ -62,16 +67,6 @@ export default async function ChapterIdPage({
             completeOnEnd={completeOnEnd}
           />
         </div>
-        {/* <div className="flex justify-end pr-4">
-          {!completeOnEnd && nextChapter?.id &&(
-            <NextChapterButton
-              chapterId={params.chapterId}
-              courseId={params.courseId}
-              nextChapterId={nextChapter?.id}
-              isCompleted={!!userProgress?.isCompleted}
-            />
-          )}
-        </div> */}
         <div>
           <div className="p-4 flex flex-col md:flex-row items-center justify-between">
             <h2 className="text-2xl font-semibold mb-2">{chapter.title}</h2>
@@ -81,20 +76,6 @@ export default async function ChapterIdPage({
               nextChapterId={nextChapter?.id}
               isCompleted={!!userProgress?.isCompleted}
             />
-            {/* IF PURCHASES */}
-            {/* {purchase ? (
-              <CourseProgressButton
-                chapterId={params.chapterId}
-                courseId={params.courseId}
-                nextChapterId={nextChapter?.id}
-                isCompleted={!!userProgress?.isCompleted}
-              />
-            ) : (
-              <CourseEnrollButton
-                courseId={params.courseId}
-                price={course.price!}
-              />
-            )} */}
           </div>
           <Separator />
           <div>
@@ -109,7 +90,7 @@ export default async function ChapterIdPage({
                     href={attachment.url}
                     key={attachment.id}
                     target="_blank"
-                    className="flex items-center p-3 w-full bg-sky-200 border text-sky-700 rounded-md
+                    className="flex items-center mb-1 p-3 w-full bg-sky-200 border text-sky-700 rounded-md
                   hover:underline"
                   >
                     <File />

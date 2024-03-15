@@ -1,8 +1,8 @@
 "use client";
 
 import qs from "query-string";
-import { cn } from "@/lib/utils";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { cn } from "@/lib/utils";
 import { IconType } from "react-icons";
 
 interface CategoryItemProps {

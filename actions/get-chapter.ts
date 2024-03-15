@@ -32,13 +32,13 @@ export const getChapter = async ({
       attachments: Attachment[] = [],
       nextChapter: Chapter | null = null;
 
-    if (purchase) {
+    // if (purchase) {
       attachments = await db.attachment.findMany({
         where: { courseId },
       });
-    }
+    // }
 
-    if (chapter.isFree || purchase) {
+    // if (chapter.isFree || purchase) {
       muxData = await db.muxData.findUnique({
         where: { chapterId },
       });
@@ -51,7 +51,7 @@ export const getChapter = async ({
         },
         orderBy: { position: "asc" },
       });
-    }
+    // }
 
     const userProgress = await db.userProgress.findUnique({
       where: { userId_chapterId: { userId, chapterId } },
