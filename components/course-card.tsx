@@ -13,7 +13,7 @@ interface CourseCardProps {
   chaptersLength: number;
   progress: number | null;
   category: string;
-  description: string | null
+  description: string | null;
 }
 
 export default function CourseCard({
@@ -23,9 +23,8 @@ export default function CourseCard({
   chaptersLength,
   progress,
   category,
-  description
+  description,
 }: CourseCardProps) {
-
   return (
     <Link href={`/courses/${id}`}>
       <div className="group hover:shadow-sm transition overflow-hidden border rounded-lg p-3 h-full">
@@ -33,7 +32,7 @@ export default function CourseCard({
           <Image fill className="object-cover" alt={title} src={imageUrl} />
         </div>
         <div className="flex flex-col pt-2">
-          <div className="text-lg md:text-base font-medium group-hover:text-sky-700 transition line-clamp-2">
+          <div className="text-lg md:text-base font-medium group-hover:text-zinc-700 transition line-clamp-2">
             {title}
           </div>
           <p className="text-xs text-mutes-foreground">{category}</p>

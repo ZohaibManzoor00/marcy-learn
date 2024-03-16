@@ -7,7 +7,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const progressVariants = cva("h-full w-full flex-1 bg-primary transition-all", {
-  variants: { variant: { default: "bg-sky-600", success: "bg-emerald-700" } },
+  variants: { variant: { default: "bg-zinc-600", success: "bg-emerald-700" } },
   defaultVariants: { variant: "default" },
 });
 
