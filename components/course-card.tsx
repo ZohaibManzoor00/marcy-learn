@@ -13,6 +13,7 @@ interface CourseCardProps {
   chaptersLength: number;
   progress: number | null;
   category: string;
+  description: string | null
 }
 
 export default function CourseCard({
@@ -22,6 +23,7 @@ export default function CourseCard({
   chaptersLength,
   progress,
   category,
+  description
 }: CourseCardProps) {
 
   return (
@@ -35,6 +37,7 @@ export default function CourseCard({
             {title}
           </div>
           <p className="text-xs text-mutes-foreground">{category}</p>
+          {/* <p className="text-xs text-mutes-foreground">{description}</p> */}
           <div className="my-3 flex items-center gap-x-2 text-sm md:text-xs">
             <div className="flex items-center gap-x-1 text-slate-500">
               <IconBadge size="sm" icon={BookOpen} />

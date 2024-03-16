@@ -83,7 +83,7 @@ export default function TitleForm({ initialData, courseId }: TitleFormProps) {
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder={"e.g. 'Advanced web development"}
+                      placeholder={"e.g. Core JavaScript"}
                       {...field}
                     />
                   </FormControl>
