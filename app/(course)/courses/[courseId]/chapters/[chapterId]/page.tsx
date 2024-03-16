@@ -25,7 +25,6 @@ export default async function ChapterIdPage({
     attachments,
     nextChapter,
     userProgress,
-    purchase,
   } = await getChapter({
     userId,
     chapterId: params.chapterId,
@@ -34,21 +33,20 @@ export default async function ChapterIdPage({
 
   if (!chapter || !course) return redirect("/");
 
-  const isLocked = !chapter.isFree && !purchase;
   const completeOnEnd = !userProgress?.isCompleted;
-
+  const isLocked = false 
   return (
     <div>
       {" "}
       {userProgress?.isCompleted && nextChapter?.id && (
         <Banner variant="success" label="You already completed this chapter." />
       )}
-      {isLocked && (
+      {/* {isLocked && (
         <Banner
           variant="warning"
-          label="You need to purchase this course to watch this chapter."
+          label="You need to wait to watch this chapter."
         />
-      )}
+      )} */}
       {!nextChapter && userProgress?.isCompleted && (
         <Banner
           variant="success"

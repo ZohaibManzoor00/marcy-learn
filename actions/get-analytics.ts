@@ -7,7 +7,7 @@ const groupByCourse = (courses: Course[]) => {
   courses.forEach((course) => {
     const courseTitle = course.title;
     if (!grouped[courseTitle]) grouped[courseTitle] = 0;
-    grouped[courseTitle] += course.price!;
+    // grouped[courseTitle] += course.price!;
   });
 
   return grouped;

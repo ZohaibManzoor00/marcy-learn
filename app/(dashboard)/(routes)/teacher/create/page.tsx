@@ -64,16 +64,16 @@ export default function CreatePage() {
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Course title</FormLabel>
+                  <FormLabel>Mod title</FormLabel>
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder="e.g. Advanced web development"
+                      placeholder="e.g. Async JavaScript"
                       {...field}
                     />
                   </FormControl>
                   <FormDescription>
-                    What will you teach in this course?
+                    What mod is this related to?
                   </FormDescription>
                   <FormMessage />
                 </FormItem>

@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import IconBadge from "@/components/icon-badge";
 import { BookOpen } from "lucide-react";
-import { formatPrice } from "@/lib/format";
 import CourseProgress from "./course-progress";
 
 interface CourseCardProps {
@@ -12,9 +11,9 @@ interface CourseCardProps {
   title: string;
   imageUrl: string;
   chaptersLength: number;
-  price: number;
   progress: number | null;
   category: string;
+  description: string | null
 }
 
 export default function CourseCard({
@@ -22,9 +21,9 @@ export default function CourseCard({
   title,
   imageUrl,
   chaptersLength,
-  price,
   progress,
   category,
+  description
 }: CourseCardProps) {
 
   return (
@@ -38,6 +37,7 @@ export default function CourseCard({
             {title}
           </div>
           <p className="text-xs text-mutes-foreground">{category}</p>
+          {/* <p className="text-xs text-mutes-foreground">{description}</p> */}
           <div className="my-3 flex items-center gap-x-2 text-sm md:text-xs">
             <div className="flex items-center gap-x-1 text-slate-500">
               <IconBadge size="sm" icon={BookOpen} />
@@ -46,25 +46,11 @@ export default function CourseCard({
               </span>
             </div>
           </div>
-          {/* SHOW PROGRESS WHEN START INSTEAD */}
           <CourseProgress
             variant={progress === 100 ? "success" : "default"}
             size="sm"
             value={progress || 0}
           />
-          {/* {progress !== null ? (
-            <div>
-              <CourseProgress
-                variant={progress === 100 ? "success" : "default"}
-                size="sm"
-                value={progress}
-              />
-            </div>
-          ) : (
-            <p className="text-md md:text-sm font-medium text-slate-700">
-              {formatPrice(price)}
-            </p>
-          )} */}
         </div>
       </div>
     </Link>

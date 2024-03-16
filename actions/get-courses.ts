@@ -1,7 +1,6 @@
 import { Category, Course } from "@prisma/client";
 import { getProgress } from "@/actions/get-progress";
 import { db } from "@/lib/db";
-import { NextResponse } from "next/server";
 
 type CourseWithProgressWithCategory = Course & {
   category: Category | null;
@@ -26,7 +25,6 @@ export const getCourses = async ({
       include: {
         category: true,
         chapters: { where: { isPublished: true }, select: { id: true } },
-        // purchases: { where: { userId } },
       },
       orderBy: { createdAt: "desc" },
     });
@@ -34,11 +32,7 @@ export const getCourses = async ({
     const coursesWithProgress: CourseWithProgressWithCategory[] =
       await Promise.all(
         courses.map(async (course) => {
-          // IF PAYMENT
-          // if (course.purchases.length === 0) return { ...course, progress: null }
-
           const progressPercentage = await getProgress(userId, course.id);
-
           return { ...course, progress: progressPercentage };
         })
       );
