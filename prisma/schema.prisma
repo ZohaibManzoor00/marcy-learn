@@ -28,7 +28,7 @@ model Course {
 
   chapters    Chapter[]
   attachments Attachment[]
-  purchases   Purchase[]
+  // purchases   Purchase[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -103,25 +103,25 @@ model UserProgress {
   @@index([chapterId])
 }
 
-model Purchase {
-  id     String @id @default(uuid())
-  userId String
+// model Purchase {
+//   id     String @id @default(uuid())
+//   userId String
 
-  courseId String
-  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+//   courseId String
+//   course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt()
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt()
 
-  @@unique([userId, courseId])
-  @@index([courseId])
-}
+//   @@unique([userId, courseId])
+//   @@index([courseId])
+// }
 
-model StripeCustomer {
-  id               String @id @default(uuid())
-  userId           String @unique
-  stripeCustomerId String @unique
+// model StripeCustomer {
+//   id               String @id @default(uuid())
+//   userId           String @unique
+//   stripeCustomerId String @unique
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt()
-}
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime @updatedAt()
+// }
