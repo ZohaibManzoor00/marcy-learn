@@ -84,7 +84,7 @@ export async function PATCH(
       },
       data: { ...values },
     });
-
+    console.log(values.videoUrl)
     if (values.videoUrl) {
       const existingMuxData = await db.muxData.findFirst({
         where: { chapterId: params.chapterId },
