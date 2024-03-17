@@ -42,13 +42,18 @@ export const VideoPlayer = ({
           { isCompleted: true }
         );
 
-        if (!nextChapterId) confetti.onOpen();
+        if (!nextChapterId) {
+          confetti.onOpen();
+          toast(`You have completed this course`, { icon: '🎉' } )
+          router.refresh()
+          return 
+        }
 
-        toast.success("You have finished this course");
-
+        
         if (nextChapterId) {
           router.push(`/courses/${courseId}/chapters/${nextChapterId}`);
         }
+        toast(`You completed ${title}`, { icon: '👏' } )
         router.refresh();
       }
     } catch {
@@ -70,14 +75,16 @@ export const VideoPlayer = ({
             <p className="text-sm">This chapter is locked</p>
           </div>
         )}
-        <MuxPlayer
-          title={title}
-          className={cn(!isReady && "hidden")}
-          onCanPlay={() => setIsReady(true)}
-          onEnded={onEnd}
-          autoPlay
-          playbackId={playbackId}
-        />
+        {!isLocked && (
+          <MuxPlayer
+            title={title}
+            className={cn(!isReady && "hidden")}
+            onCanPlay={() => setIsReady(true)}
+            onEnded={onEnd}
+            autoPlay
+            playbackId={playbackId}
+          />
+        )}
       </div>
     </>
   );

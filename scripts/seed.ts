@@ -16,6 +16,7 @@ async function main() {
             { name: "Mod 7" }, 
             { name: "Mod 8" }, 
             { name: "Mod 9" }, 
+            { name: "Other" }, 
         ]
     })
     console.log("Success")

@@ -5,7 +5,6 @@ import { getChapter } from "@/actions/get-chapter";
 import Banner from "@/components/banner";
 import { Separator } from "@/components/ui/separator";
 import { Preview } from "@/components/preview";
-import { File } from "lucide-react";
 
 import { VideoPlayer } from "./_components/video-player";
 import CourseProgressButton from "./_components/course-progress-button";
@@ -29,19 +28,19 @@ export default async function ChapterIdPage({
   if (!chapter || !course) return redirect("/");
 
   const completeOnEnd = !userProgress?.isCompleted;
-  const isLocked = false;
+  const isLocked = !chapter.isFree;
   return (
     <div>
       {" "}
       {userProgress?.isCompleted && nextChapter?.id && (
         <Banner variant="success" label="You already completed this chapter." />
       )}
-      {/* {isLocked && (
+      {isLocked && (
         <Banner
           variant="warning"
           label="You need to wait to watch this chapter."
         />
-      )} */}
+      )}
       {!nextChapter && userProgress?.isCompleted && (
         <Banner
           variant="success"
@@ -63,40 +62,28 @@ export default async function ChapterIdPage({
         <div>
           <div className="p-4 flex flex-col md:flex-row items-center justify-between">
             <h2 className="text-2xl font-semibold mb-2">{chapter.title}</h2>
-            <CourseProgressButton
-              chapterId={params.chapterId}
-              courseId={params.courseId}
-              nextChapterId={nextChapter?.id}
-              isCompleted={!!userProgress?.isCompleted}
-            />
+            {!isLocked && (
+              <CourseProgressButton
+                chapterId={params.chapterId}
+                courseId={params.courseId}
+                nextChapterId={nextChapter?.id}
+                isCompleted={!!userProgress?.isCompleted}
+                title={chapter.title}
+              />
+            )}
           </div>
           <Separator />
-          <div>
-            <Preview value={chapter.description!} />
-          </div>
-          <Separator />
-
-          {!!attachments.length && (
-          <CollapsibleAttachments attachments={attachments}/>)}
-          {/* {!!attachments.length && (
+          {!isLocked && (
             <>
-              <Separator />
-              <div className="p-4">
-                {attachments.map((attachment) => (
-                  <a
-                    href={attachment.url}
-                    key={attachment.id}
-                    target="_blank"
-                    className="flex items-center mb-1 p-3 w-full bg-sky-200 border text-sky-700 rounded-md
-                  hover:underline"
-                  >
-                    <File />
-                    <p className="line-clamp-1">{attachment.name}</p>
-                  </a>
-                ))}
+              <div>
+                <Preview value={chapter.description!} />
               </div>
+              <Separator />
+              {!!attachments.length && (
+                <CollapsibleAttachments attachments={attachments} />
+              )}
             </>
-          )} */}
+          )}
         </div>
       </div>
     </div>
