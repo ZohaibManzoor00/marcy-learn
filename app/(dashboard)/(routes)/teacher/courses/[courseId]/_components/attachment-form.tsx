@@ -82,7 +82,7 @@ export default function AttachmentForm({
               {initialData.attachments.map((attachment) => (
                 <div
                   key={attachment.id}
-                  className="flex items-center p-3 w-full bg-sky-100 border-sky-200 border text-sky-700 rounded-md"
+                  className="flex items-center p-3 w-full bg-zinc-100 border-zinc-200 border text-zinc-700 rounded-md"
                 >
                   <File className="h-4 w-4 mr-2 flex-shrink-0" />
                   <p className="text-xs line-clamp-1">{attachment.name}</p>

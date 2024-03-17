@@ -40,8 +40,8 @@ export default function CategoryItem({
     <button
       onClick={onClick}
       className={cn(
-        "py-2 px-3 text-sm border border-slate-200 rounded-full flex items-center gap-x-1 hover:border-sky-700 transition",
-        isSelected && "border-sky-700 bg-sky-200/20 text-sky-800"
+        "py-2 px-3 text-sm border border-slate-200 rounded-full flex items-center gap-x-1 hover:border-zinc-700 transition",
+        isSelected && "border-zinc-700 bg-zinc-200/20 text-zinc-800"
       )}
       typeof="button"
     >

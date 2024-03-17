@@ -1,34 +1,66 @@
 import { db } from "@/lib/db";
-import { Course } from "@prisma/client";
 
-const groupByCourse = (courses: Course[]) => {
-  const grouped: { [courseTitle: string]: number } = {};
-
-  courses.forEach((course) => {
-    const courseTitle = course.title;
-    if (!grouped[courseTitle]) grouped[courseTitle] = 0;
-    // grouped[courseTitle] += course.price!;
+const getGlobalCourseProgressStats = async () => {
+  const courses = await db.course.findMany({
+    include: {
+      chapters: {
+        include: {
+          userProgress: true,
+        },
+      },
+    },
   });
 
-  return grouped;
+  const courseStats = courses.map((course) => ({
+    courseId: course.id,
+    courseTitle: course.title,
+    usersCompleted: new Set(),
+    usersInProgress: new Set(),
+  }));
+
+  courses.forEach((course, courseIndex) => {
+    course.chapters.forEach((chapter) => {
+      chapter.userProgress.forEach((progress) => {
+        const userId = progress.userId;
+
+        if (progress.isCompleted) {
+          courseStats[courseIndex].usersCompleted.add(userId);
+        } else {
+          courseStats[courseIndex].usersInProgress.add(userId);
+        }
+
+        if (courseStats[courseIndex].usersCompleted.has(userId)) {
+          courseStats[courseIndex].usersInProgress.delete(userId);
+        }
+      });
+    });
+  });
+
+  const finalStats = courseStats.map(
+    ({ courseTitle, usersCompleted, usersInProgress }) => ({
+      name: courseTitle,
+      totalComplete: usersCompleted.size,
+      totalInProgress: usersInProgress.size,
+    })
+  );
+
+  const totalComplete = finalStats.reduce(
+    (acc, cur) => acc + +cur.totalComplete,
+    0
+  );
+  const totalInProgress = finalStats.reduce(
+    (acc, cur) => acc + +cur.totalInProgress,
+    0
+  );
+
+  return { data: finalStats, totalComplete, totalInProgress };
 };
 
-export const getAnalytics = async (userId: string) => {
+export const getAnalytics = async () => {
   try {
-    const courses = await db.course.findMany({ where: { userId } });
-    const groupedEarnings = groupByCourse(courses);
-    const data = Object.entries(groupedEarnings).map(
-      ([courseTitle, total]) => ({
-        name: courseTitle,
-        total,
-      })
-    );
-    const totalRevenue = data.reduce((acc, cur) => acc + cur.total, 0);
-    const totalSales = courses.length;
-
-    return { data, totalRevenue, totalSales };
+    return await getGlobalCourseProgressStats();
   } catch (err) {
-    console.log("[GET_ANALYTICS]", err);
-    return { data: [], totalRevenue: 0, totalSales: 0 };
+    console.error("[GET_GLOBAL_COURSE_PROGRESS_STATS]", err);
+    return { data: [], totalComplete: [], totalInProgress: [] };
   }
 };
