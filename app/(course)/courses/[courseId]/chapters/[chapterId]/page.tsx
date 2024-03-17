@@ -9,6 +9,7 @@ import { File } from "lucide-react";
 
 import { VideoPlayer } from "./_components/video-player";
 import CourseProgressButton from "./_components/course-progress-button";
+import { CollapsibleAttachments } from "./_components/collapsible-attachment";
 
 export default async function ChapterIdPage({
   params,
@@ -73,7 +74,11 @@ export default async function ChapterIdPage({
           <div>
             <Preview value={chapter.description!} />
           </div>
+          <Separator />
+
           {!!attachments.length && (
+          <CollapsibleAttachments attachments={attachments}/>)}
+          {/* {!!attachments.length && (
             <>
               <Separator />
               <div className="p-4">
@@ -91,7 +96,7 @@ export default async function ChapterIdPage({
                 ))}
               </div>
             </>
-          )}
+          )} */}
         </div>
       </div>
     </div>
