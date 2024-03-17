@@ -82,7 +82,7 @@ export default async function ChapterIdPage({
                     href={attachment.url}
                     key={attachment.id}
                     target="_blank"
-                    className="flex items-center mb-1 p-3 w-full bg-zinc-200 border text-zinc-700 rounded-md
+                    className="flex items-center mb-1 p-3 w-full bg-sky-200 border text-sky-700 rounded-md
                   hover:underline"
                   >
                     <File />
