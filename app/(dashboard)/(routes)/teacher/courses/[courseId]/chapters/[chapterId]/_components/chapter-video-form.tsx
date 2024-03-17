@@ -11,6 +11,7 @@ import toast from "react-hot-toast";
 import { Button } from "@/components/ui/button";
 import FileUpload from "@/components/file-upload";
 import { Pencil, PlusCircle, Video } from "lucide-react";
+import { RiUploadCloud2Line } from "react-icons/ri";
 
 interface ChapterVideoFormProps {
   initialData: Chapter & { muxData?: MuxData | null };
@@ -69,7 +70,7 @@ export default function ChapterVideoForm({
       {!isEditing &&
         (!initialData.videoUrl ? (
           <div className="flex items-center justify-center h-60 bg-slate-200 rounded-md">
-            <Video className="h-10 w-10 tex-slate-500" />
+            <Video className="h-10 w-10 text-slate-500" />
           </div>
         ) : (
           <div className="relative aspect-video mt-2">
@@ -77,7 +78,10 @@ export default function ChapterVideoForm({
           </div>
         ))}
       {isEditing && (
-        <div>
+        <>
+          <div className="flex items-center justify-center h-60 bg-slate-200 rounded-md mb-4">
+            <RiUploadCloud2Line className="h-10 w-10 text-slate-500" />
+          </div>
           <FileUpload
             endpoint="chapterVideo"
             onChange={(url) => {
@@ -87,7 +91,7 @@ export default function ChapterVideoForm({
           <div className="text-xs text-muted-foreground mt-4">
             Upload this chapter&apos;s video
           </div>
-        </div>
+        </>
       )}
       {initialData.videoUrl && !isEditing && (
         <div className="text-xs text-muted-foreground mt-2">

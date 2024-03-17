@@ -1,5 +1,4 @@
 'use client'
-// import { UploadDropzone } from '@uploadthing/react'
 import toast from 'react-hot-toast';
 import { UploadButton } from '../lib/uploadthing';
 import { ourFileRouter } from '@/app/api/uploadthing/core'

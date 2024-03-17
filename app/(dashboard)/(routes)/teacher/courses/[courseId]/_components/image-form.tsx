@@ -10,6 +10,7 @@ import { Course } from "@prisma/client";
 
 import { Button } from "@/components/ui/button";
 import { ImageIcon, Pencil, PlusCircle } from "lucide-react";
+
 import FileUpload from "@/components/file-upload";
 
 interface ImageFormProps {
@@ -63,7 +64,7 @@ export default function ImageForm({ initialData, courseId }: ImageFormProps) {
       {!isEditing &&
         (!initialData.imageUrl ? (
           <div className="flex items-center justify-center h-60 bg-slate-200 rounded-md">
-            <ImageIcon className="h-10 w-10 tex-slate-500" />
+            <ImageIcon className="h-10 w-10 text-slate-500" />
           </div>
         ) : (
           <div className="relative aspect-video mt-2">
@@ -76,17 +77,20 @@ export default function ImageForm({ initialData, courseId }: ImageFormProps) {
           </div>
         ))}
       {isEditing && (
-        <div>
-          <FileUpload
-            endpoint="courseImage"
-            onChange={(url) => {
-              if (url) onSubmit({ imageUrl: url });
-            }}
-          />
+        <>
+          <div className="flex items-center justify-center h-60 bg-slate-200 rounded-md mb-4">
+            <ImageIcon className="h-10 w-10 text-slate-500" />
+          </div>
+            <FileUpload
+              endpoint="courseImage"
+              onChange={(url) => {
+                if (url) onSubmit({ imageUrl: url });
+              }}
+            />
           <div className="text-xs text-muted-foreground mt-4">
             16:19 aspect ratio recommended
           </div>
-        </div>
+        </>
       )}
     </div>
   );
