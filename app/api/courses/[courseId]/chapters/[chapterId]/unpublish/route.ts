@@ -23,7 +23,7 @@ export async function PATCH(
     });
 
     const publishedChaptersInCourse = await db.chapter.findMany({
-      where: { courseId: params.courseId, isPublished: false },
+      where: { courseId: params.courseId, isPublished: true },
     });
 
     if (!publishedChaptersInCourse.length) {

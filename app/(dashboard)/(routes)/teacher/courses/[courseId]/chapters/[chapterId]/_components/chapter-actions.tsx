@@ -7,7 +7,6 @@ import toast from "react-hot-toast";
 
 import ConfirmModal from "@/components/modals/confirm-modal";
 import { Button } from "@/components/ui/button";
-import { useConfettiStore } from "@/hooks/use-confetti-store";
 import { Trash } from "lucide-react";
 
 interface ChapterActionsProps {
@@ -25,8 +24,6 @@ export default function ChapterActions({
 }: ChapterActionsProps) {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  const confetti = useConfettiStore();
-
 
   const onClick = async () => {
     try {
@@ -41,7 +38,6 @@ export default function ChapterActions({
           `/api/courses/${courseId}/chapters/${chapterId}/publish`
         );
         toast.success("Chapter published");
-        confetti.onOpen();
       }
       router.refresh()
     } catch {

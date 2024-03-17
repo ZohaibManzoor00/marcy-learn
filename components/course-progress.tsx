@@ -3,13 +3,14 @@ import { Progress } from "./ui/progress";
 
 interface CourseProgressProps {
   value: number;
-  variant?: "default" | "success";
+  variant?: "default" | "success" | 'primary';
   size?: "default" | "sm";
 }
 
 const colorByVariant = {
   default: "text-zinc-700",
   success: "text-emerald-700",
+  primary: 'text-sky-700'
 };
 
 const sizeByVariant = {

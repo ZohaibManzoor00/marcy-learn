@@ -3,7 +3,7 @@ import { LucideIcon } from "lucide-react";
 
 interface InfoCardProps {
   numberOfItems: number;
-  variant?: "default" | "success";
+  variant?: "default" | "success" | 'primary';
   label: string;
   icon: LucideIcon;
 }

@@ -84,9 +84,9 @@ export default function ChapterAccessForm({
           )}
         >
           {initialData.isFree ? (
-            <>This chapter is free for preview.</>
+            <>This chapter is open for preview.</>
           ) : (
-            <>This chapters is not free</>
+            <>This chapters is locked</>
           )}
         </p>
       )}
@@ -109,8 +109,7 @@ export default function ChapterAccessForm({
                   </FormControl>
                   <div className="space-y-1 leading-none">
                     <FormDescription>
-                      Check this box if you want to make this chapter free for
-                      preview
+                      Check this box if you want to allow this chapter for preview
                     </FormDescription>
                   </div>
                 </FormItem>

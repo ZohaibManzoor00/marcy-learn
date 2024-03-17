@@ -12,7 +12,6 @@ import AttachmentForm from "./_components/attachment-form";
 import ChaptersForm from "./_components/chapters-form";
 import Banner from "@/components/banner";
 import Actions from "./_components/actions";
-// import PriceForm from "./_components/price-form";
 
 export default async function CourseIdPage({
   params,
@@ -70,7 +69,7 @@ export default async function CourseIdPage({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
           <div>
             <div className="flex items-center gap-x-2">
-              <IconBadge icon={LayoutDashboard} />
+              <IconBadge icon={LayoutDashboard} variant={"default"} />
               <h2 className="text-xl">Customize your course</h2>
             </div>
             <TitleForm initialData={course} courseId={course.id} />
@@ -88,23 +87,18 @@ export default async function CourseIdPage({
           <div className="space-y-6">
             <div className="">
               <div className="flex items-center gap-x-2">
-                <IconBadge icon={ListChecks} />
+                <IconBadge variant={"default"} icon={ListChecks} />
                 <h2 className="text-xl">Course Chapters</h2>
               </div>
               <ChaptersForm initialData={course} courseId={course.id} />
             </div>
             <div>
               <div className="flex items-center gap-x-2">
-                <IconBadge icon={File} />
+                <IconBadge variant={"default"} icon={File} />
                 <h2 className="text-xl">Resources & Attachments</h2>
               </div>
               <AttachmentForm initialData={course} courseId={course.id} />
             </div>
-            {/* <div className="flex items-center gap-x-2">
-              <IconBadge icon={Lock} />
-              <h2 className="text-xl">Lock your course</h2>
-            </div>
-            <PriceForm initialData={course} courseId={course.id} /> */}
           </div>
         </div>
       </div>
