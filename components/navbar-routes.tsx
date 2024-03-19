@@ -7,6 +7,7 @@ import { Button } from "./ui/button";
 import { LogOut } from "lucide-react";
 import SearchInput from "./search-input";
 import { isTeacher } from "@/lib/teacher";
+import DarkModeToggler from "./dark-mode-toggler";
 
 export default function NavbarRoutes() {
   const { userId } = useAuth();
@@ -27,7 +28,7 @@ export default function NavbarRoutes() {
         {isTeacherPage || isCoursePage ? (
           <Link href="/">
             <Button className="sm" variant="ghost">
-              <LogOut className="h-4 2-4 mr-2" />
+              <LogOut className="h-4 mr-2 w-4" />
               Exit
             </Button>
           </Link>
@@ -38,7 +39,10 @@ export default function NavbarRoutes() {
             </Button>
           </Link>
         ) : null}
-        <UserButton afterSignOutUrl="/" />
+        <DarkModeToggler />
+        <div className="mt-1">
+          <UserButton afterSignOutUrl="/" />
+        </div>
       </div>
     </>
   );

@@ -20,9 +20,7 @@ export default function SidebarItem(props: SideBarItemProps) {
     pathname === href ||
     pathname?.startsWith(`${href}/`);
 
-  const onClick = () => {
-    router.push(href);
-  };
+  const onClick = () => router.push(href);
 
   return (
     <>
@@ -30,21 +28,24 @@ export default function SidebarItem(props: SideBarItemProps) {
         onClick={onClick}
         type="button"
         className={cn(
-          "flex items-center gap-x-2 text-slate-500 text-sm font-[500] pl-6 transition-all hover:text-slate-600 hover:bg-slate-300/20",
+          "flex items-center gap-x-2 text-slate-500 dark:text-white text-sm font-[500] pl-6 transition-all hover:text-slate-600 dark:hover:text-slate-400 hover:bg-slate-300/20 dark:hover:bg-slate-900",
           isActive &&
-            "text-zinc-700 bg-zinc-200/20 hover:bg-zinc-200/20 hover:text-zinc-700"
+            "text-zinc-700 dark:text-white bg-zinc-200/20 dark:bg-slate-900 hover:bg-zinc-200/20 hover:text-zinc-700"
         )}
       >
         <div className="flex items-center gap-x-2 py-4">
           <Icon
             size={22}
-            className={cn("tex-slate-500", isActive && "text-zinc-700")}
+            className={cn(
+              "text-slate-500",
+              isActive && "text-zinc-700 dark:text-slate-400"
+            )}
           />
           {label}
         </div>
         <div
           className={cn(
-            "ml-auto opacity-0 border-2 border-zinc-700 h-full transition-all",
+            "ml-auto opacity-0 border-2 border-zinc-700 dark:border-slate-800 h-full transition-all",
             isActive && "opacity-100"
           )}
         />
