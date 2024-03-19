@@ -39,6 +39,7 @@ export default async function ChapterIdPage({
         <Banner
           variant="warning"
           label="You need to wait to watch this chapter."
+          dark="black"
         />
       )}
       {!nextChapter && userProgress?.isCompleted && (

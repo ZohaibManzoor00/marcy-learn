@@ -50,7 +50,7 @@ export default async function CourseIdPage({
   return (
     <>
       {!course.isPublished && (
-        <Banner label="This course is unpublished. It will not be visible to students." />
+        <Banner label="This course is unpublished. It will not be visible to students." dark={"black"} />
       )}
       <div className="p-6">
         <div className="flex items-center justify-between">
