@@ -53,7 +53,7 @@ export const VideoPlayer = ({
         if (nextChapterId) {
           router.push(`/courses/${courseId}/chapters/${nextChapterId}`);
         }
-        toast(`You completed ${title}`, { icon: '👏' } )
+        toast.success("Progress Updated");
         router.refresh();
       }
     } catch {
