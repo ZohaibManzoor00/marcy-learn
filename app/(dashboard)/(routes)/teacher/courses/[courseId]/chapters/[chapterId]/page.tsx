@@ -44,6 +44,7 @@ export default async function ChapterIdPage({
         <Banner
           label="This chapter is unpublished. It will not be visible in the course"
           variant="warning"
+          dark="black"
         />
       )}
       <div className="p-6">

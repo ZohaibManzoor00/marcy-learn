@@ -41,7 +41,7 @@ export default function CreatePage() {
       router.push(`/teacher/courses/${res.data.id}`);
       toast.success("Course created");
     } catch (err) {
-      toast.error("Something went wrong man");
+      toast.error("Something went wrong");
     }
   };
 
