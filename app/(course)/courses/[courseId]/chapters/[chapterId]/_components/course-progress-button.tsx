@@ -8,14 +8,13 @@ import { useConfettiStore } from "@/hooks/use-confetti-store";
 
 import { Button } from "@/components/ui/button";
 import { CheckCircle, XCircle } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 interface CourseProgressButtonProps {
   chapterId: string;
   courseId: string;
   isCompleted?: boolean;
   nextChapterId?: string;
-  title: string
+  title: string;
 }
 
 export default function CourseProgressButton({
@@ -23,7 +22,7 @@ export default function CourseProgressButton({
   courseId,
   isCompleted,
   nextChapterId,
-  title
+  title,
 }: CourseProgressButtonProps) {
   const router = useRouter();
   const confetti = useConfettiStore();
@@ -33,14 +32,19 @@ export default function CourseProgressButton({
   const onClick = async () => {
     try {
       setIsLoading(true);
-      await axios.put(
+      const { data: progress } = await axios.put(
         `/api/courses/${courseId}/chapters/${chapterId}/progress`,
         { isCompleted: !isCompleted }
       );
 
-      if (!isCompleted && !nextChapterId) confetti.onOpen() 
-      
-      toast.success('Progress Updated')
+      if (!isCompleted && progress == 100) {
+        confetti.onOpen();
+        toast(`You have completed this course`, { icon: "🎉" });
+        router.refresh();
+        return;
+      }
+
+      toast.success("Progress Updated");
       router.refresh();
     } catch {
       toast.error("Something went wrong");
