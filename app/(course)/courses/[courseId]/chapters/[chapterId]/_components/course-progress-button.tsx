@@ -44,6 +44,10 @@ export default function CourseProgressButton({
         return;
       }
 
+      if (!isCompleted && nextChapterId) {
+        router.push(`/courses/${courseId}/chapters/${nextChapterId}`);
+      }
+
       toast.success("Progress Updated");
       router.refresh();
     } catch {
