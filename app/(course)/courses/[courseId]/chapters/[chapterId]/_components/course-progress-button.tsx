@@ -8,6 +8,7 @@ import { useConfettiStore } from "@/hooks/use-confetti-store";
 
 import { Button } from "@/components/ui/button";
 import { CheckCircle, XCircle } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface CourseProgressButtonProps {
   chapterId: string;
@@ -37,21 +38,9 @@ export default function CourseProgressButton({
         { isCompleted: !isCompleted }
       );
 
-      if (!isCompleted && !nextChapterId) {
-        confetti.onOpen()
-        toast(`You have completed this course`, { icon: '🎉' } )
-        router.refresh();
-        return 
-      };
-
-      if (!isCompleted && nextChapterId) {
-        router.push(`/courses/${courseId}/chapters/${nextChapterId}`);
-        toast(`You have completed this course`, { icon: '🎉' } )
-        router.refresh();
-        return 
-      }
-
-      toast.success("Progress updated");
+      if (!isCompleted && !nextChapterId) confetti.onOpen() 
+      
+      toast.success('Progress Updated')
       router.refresh();
     } catch {
       toast.error("Something went wrong");
