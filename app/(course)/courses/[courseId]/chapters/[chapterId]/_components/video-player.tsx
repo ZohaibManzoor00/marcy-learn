@@ -37,12 +37,12 @@ export const VideoPlayer = ({
   const onEnd = async () => {
     try {
       if (completeOnEnd) {
-        await axios.put(
+        const { data: progress } = await axios.put(
           `/api/courses/${courseId}/chapters/${chapterId}/progress`,
           { isCompleted: true }
         );
 
-        if (!nextChapterId) {
+        if (progress == 100) {
           confetti.onOpen();
           toast(`You have completed this course`, { icon: '🎉' } )
           router.refresh()

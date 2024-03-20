@@ -25,7 +25,6 @@ export default function Actions({
   const router = useRouter();
   const confetti = useConfettiStore();
 
-  // TODO Get publish course to work
   const onClick = async () => {
     try {
       setIsLoading(true);
