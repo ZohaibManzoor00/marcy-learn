@@ -47,6 +47,13 @@ export default async function ChapterIdPage({
           dark="black"
         />
       )}
+      {!chapter.isFree && chapter.isPublished && (
+        <Banner
+          label="This chapter is locked. It will be visible in the course"
+          variant="warning"
+          dark="black"
+        />
+      )}
       <div className="p-6">
         <div className="flex items-center justify-between">
           <div className="w-full">
@@ -59,7 +66,7 @@ export default async function ChapterIdPage({
             </Link>
             <div className="flex items-center justify-between w-full">
               <div className="flex flex-col gap-y-2">
-                <h1 className="text-2xl font-medium">Chapter creation</h1>
+                <h1 className="text-2xl font-medium">Chapter Creation</h1>
                 <span className="text-sm text-slate-700">
                   Complete all fields {completionText}
                 </span>
