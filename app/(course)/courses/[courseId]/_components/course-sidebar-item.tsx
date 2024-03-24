@@ -50,7 +50,7 @@ export default function CourseSidebarItem({
             isCompleted && "text-emerald-700", 
           )}
         />
-        {label}
+        <span className="line-clamp-1">{label}</span>
       </div>
       <div
         className={cn(
