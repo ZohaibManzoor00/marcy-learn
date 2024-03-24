@@ -45,7 +45,7 @@ export const getPathwayCourses = async ({
 
     return coursesWithProgress;
   } catch (err) {
-    console.log("[GET_COURSES]", err);
+    console.log("[GET_PATHWAY_COURSES]", err);
     return [];
   }
 };
