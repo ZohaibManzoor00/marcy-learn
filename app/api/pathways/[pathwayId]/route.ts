@@ -15,7 +15,7 @@ export async function DELETE(
   try {
     const { userId } = auth();
     if (!userId) return new NextResponse("Unauthorized", { status: 401 });
-    console.log("here");
+
     const course = await db.course.findUnique({
       where: { id: params.pathwayId, userId },
       include: { chapters: { include: { muxData: true } } },

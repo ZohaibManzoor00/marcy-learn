@@ -6,14 +6,22 @@ import SearchInput from "@/components/search-input";
 import { CoursesList } from "@/components/courses-list";
 
 interface PathwaysCoursesProps {
-  searchParams: { pathwayId: string; title: string };
+  searchParams: { title: string };
+  params: { pathwayId: string };
 }
 
-export default async function PathwayCourses({ searchParams }: PathwaysCoursesProps) {
+export default async function PathwayCourses({
+  searchParams,
+  params,
+}: PathwaysCoursesProps) {
   const { userId } = auth();
   if (!userId) return redirect("/");
 
-  const coursesInPathway = await getPathwayCourses({ userId, ...searchParams });
+  const coursesInPathway = await getPathwayCourses({
+    userId,
+    ...searchParams,
+    ...params,
+  });
 
   return (
     <>

@@ -23,7 +23,7 @@ interface DropdownMenuRadioGroupProps {
 
 export function DropdownMenuRadioGroupDemo({ options }: DropdownMenuRadioGroupProps) {
   const [position, setPosition] = useState("bottom");
-    console.log(options)
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

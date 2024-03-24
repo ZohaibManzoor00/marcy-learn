@@ -22,7 +22,7 @@ export default function PathwayCourseCard({
   imageUrl,
   description,
   courseLength,
-progress,
+  progress,
 }: 
 // category,
 PathwayCourseCardProps) {
