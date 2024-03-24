@@ -3,9 +3,8 @@
 import { Category } from "@prisma/client";
 
 import { IconType } from "react-icons";
-import { RiTeamLine } from "react-icons/ri";
+import { RiTeamLine, RiJavascriptLine } from "react-icons/ri";
 import { LiaTerminalSolid } from "react-icons/lia";
-import { RiJavascriptLine } from "react-icons/ri";
 import { CgWebsite } from "react-icons/cg";
 import { DiJavascript1 } from "react-icons/di";
 import { MdDataObject } from "react-icons/md";

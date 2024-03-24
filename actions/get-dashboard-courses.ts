@@ -14,7 +14,8 @@ type DashboardCourses = {
 };
 
 export const getDashboardCourses = async (
-  userId: string
+  userId: string, 
+  title?: string 
 ): Promise<DashboardCourses> => {
   try {
     const coursesInProgress = await db.course.findMany({
@@ -25,6 +26,7 @@ export const getDashboardCourses = async (
             isPublished: true,
           },
         },
+        title: { contains: title }
       },
       include: {
         category: true,
@@ -34,7 +36,7 @@ export const getDashboardCourses = async (
         },
       },
     });
-    
+
     const coursesWithProgress = await Promise.all(
       coursesInProgress.map(async (course) => {
         const progress = await getProgress(userId, course.id);
