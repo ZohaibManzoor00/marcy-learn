@@ -9,8 +9,22 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "LMS MLS",
-  description: "LMS designed for The Marcy Lab School",
+  title: "Marcy Learn",
+  description: "LMS for The Marcy Lab School",
+  icons: {
+    icon: [
+      {
+        media: "(prefers-color-scheme: light)",
+        url: "/marcy-logo.png",
+        href: "/marcy-logo.png",
+      },
+      {
+        media: "(prefers-color-scheme: dark)",
+        url: "/marcy-logo.png",
+        href: "/marcy-logo.png",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

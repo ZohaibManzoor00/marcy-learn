@@ -3,7 +3,14 @@ import PathwayCourseCard from "./pathway-card";
 import CourseCard from "@/components/course-card";
 
 interface PathwaysListProps {
-  items: { id: string; title: string, imageUrl: string | null }[];
+  items: {
+    id: string;
+    title: string;
+    imageUrl: string | null;
+    description: string | null;
+    progress?: number | null;
+    courseCount?: number;
+  }[];
 }
 
 export const PathwaysList = ({ items }: PathwaysListProps) => {
@@ -16,10 +23,10 @@ export const PathwaysList = ({ items }: PathwaysListProps) => {
             id={item.id}
             title={item.title}
             imageUrl={item.imageUrl!}
-            // chaptersLength={item.chapters?.length}
-            // progress={item.progress}
+            description={item?.description}
+            courseLength={item?.courseCount || 0}
+            progress={item?.progress || 0}
             // category={item?.category?.name!}
-            // description={item?.description}
           />
         ))}
       </div>

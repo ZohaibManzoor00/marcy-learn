@@ -10,14 +10,14 @@ export default async function CoursesPage() {
   const { userId } = auth();
   if (!userId || !isTeacher(userId)) return redirect("/");
 
-  const courses = await db.course.findMany({
+  const pathways = await db.pathway.findMany({
     where: { userId },
     orderBy: { createdAt: "desc" },
   });
 
   return (
     <div className="p-6">
-      <DataTable columns={columns} data={courses} />
+      <DataTable columns={columns} data={pathways} />
     </div>
   );
 }

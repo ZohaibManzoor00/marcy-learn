@@ -1,8 +1,8 @@
-import { Category, Course } from "@prisma/client";
+import { Category, Course, Pathway } from "@prisma/client";
 import { getProgress } from "@/actions/get-progress";
 import { db } from "@/lib/db";
 
-type CourseWithProgress = Course & {
+type CourseWithProgress = Pathway & Course & {
   category: Category | null;
   chapters: { id: string }[];
   progress: number | null;
@@ -27,7 +27,7 @@ export const getPathwayCourses = async ({
         isPublished: true,
         title: { contains: title },
         categoryId,
-        pathway: { some: { id: pathwayId } },
+        pathwayId
       },
       include: {
         category: true,

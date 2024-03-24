@@ -9,10 +9,17 @@ datasource db {
 }
 
 model Pathway {
-  id       String   @id @default(uuid())
-  title    String
-  imageUrl String?  @db.Text
-  courses  Course[]
+  id          String   @id @default(uuid())
+  userId      String
+  title       String
+  description String?  @db.Text
+  imageUrl    String?  @db.Text
+  isPublished Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  courses     Course[]
 }
 
 model Course {
@@ -26,13 +33,16 @@ model Course {
   categoryId String?
   category   Category? @relation(fields: [categoryId], references: [id])
 
+  pathway   Pathway? @relation(fields: [pathwayId], references: [id])
+  pathwayId String?
+
   chapters    Chapter[]
   attachments Attachment[]
-  pathway     Pathway[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  @@index([pathwayId])
   @@index([categoryId])
 }
 

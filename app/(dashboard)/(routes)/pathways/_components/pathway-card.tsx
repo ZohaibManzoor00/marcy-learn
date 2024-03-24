@@ -10,21 +10,22 @@ interface PathwayCourseCardProps {
   id: string;
   title: string;
   imageUrl: string;
-  // chaptersLength: number;
-  // progress: number | null;
+  description: string | null;
+  courseLength: number;
+  progress: number | null;
   // category: string;
-  // description: string | null;
 }
 
 export default function PathwayCourseCard({
   id,
   title,
   imageUrl,
-  // chaptersLength,
-  // progress,
-  // category,
-  // description,
-}: PathwayCourseCardProps) {
+  description,
+  courseLength,
+progress,
+}: 
+// category,
+PathwayCourseCardProps) {
   return (
     <Link href={`/pathways/${id}/courses`}>
       <div className="group hover:shadow-sm transition overflow-hidden border rounded-lg p-3 h-full">
@@ -40,16 +41,16 @@ export default function PathwayCourseCard({
           <div className="my-3 flex items-center gap-x-2 text-sm md:text-xs">
             <div className="flex items-center gap-x-1 text-slate-500">
               <IconBadge size="sm" icon={BookOpen} variant={"primary"} />
-              {/* <span>
-                {chaptersLength} {chaptersLength === 1 ? "Chapter" : "Chapters"}
-              </span> */}
+              <span>
+                {courseLength} {courseLength === 1 ? "Course" : "Courses"}
+              </span>
             </div>
           </div>
-          {/* <CourseProgress
+          <CourseProgress
             variant={progress === 100 ? "success" : "primary"}
             size="sm"
             value={progress || 0}
-          /> */}
+          />
         </div>
       </div>
     </Link>

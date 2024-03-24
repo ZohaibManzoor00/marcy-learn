@@ -30,11 +30,17 @@ const teacherRoutes = [
     href: "/teacher/courses",
   },
   {
+    icon: Compass,
+    label: "Pathways",
+    href: "/teacher/pathways",
+  },
+  {
     icon: BarChart,
     label: "Analytics",
     href: "/teacher/analytics",
   },
 ];
+
 export default function SidebarRoutes() {
   const pathname = usePathname();
   const isTeacherPage = pathname?.includes("/teacher");

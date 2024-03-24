@@ -12,85 +12,70 @@ import AttachmentForm from "./_components/attachment-form";
 import ChaptersForm from "./_components/chapters-form";
 import Banner from "@/components/banner";
 import Actions from "./_components/actions";
-import PathwayForm from "./_components/pathway-form";
 
-export default async function CourseIdPage({
+export default async function PathwayIdPage({
   params,
 }: {
-  params: { courseId: string };
+  params: { pathwayId: string };
 }) {
   const { userId } = auth();
   if (!userId) return redirect("/");
 
-  const course = await db.course.findUnique({
-    where: { id: params.courseId, userId },
-    include: {
-      chapters: { orderBy: { position: "asc" } },
-      attachments: { orderBy: { createdAt: "desc" } },
-    },
+  const pathway = await db.pathway.findUnique({
+    where: { id: params.pathwayId },
   });
 
-  const categories = await db.category.findMany({ orderBy: { name: "asc" } });
-  const pathways = await db.pathway.findMany({ orderBy: { title: "asc" } });
+  const categories = await db.category.findMany();
 
-  if (!course) return redirect("/");
+  if (!pathway) return redirect("/");
 
-  const requiredFields = [
-    course.title,
-    course.description,
-    course.imageUrl,
-    course.categoryId,
-    course.chapters.some((chapter) => chapter.isPublished),
-  ];
+  const requiredFields = [pathway.title, pathway.description, pathway.imageUrl];
 
   const totalFields = requiredFields.length;
   const completedFields = requiredFields.filter(Boolean).length;
   const completionText = `${completedFields}/${totalFields}`;
 
   const isComplete = requiredFields.every(Boolean);
-  console.log(categories)
+
   return (
     <>
-      {!course.isPublished && (
-        <Banner
-          label="This course is unpublished. It will not be visible to students."
-          dark={"black"}
-        />
+      {!pathway.isPublished && (
+        <Banner label="This pathway is unpublished. It will not be visible to viewers." dark={"black"} />
       )}
       <div className="p-6">
         <div className="flex items-center justify-between">
           <div className="flex flex-col gap-y-2">
-            <h1 className="text-2xl font-medium">Course setup</h1>
+            <h1 className="text-2xl font-medium">Pathway setup</h1>
             <span className="text-sm text-slate-700">
               Complete all fields {completionText}
             </span>
           </div>
           <Actions
             disabled={!isComplete}
-            courseId={params.courseId}
-            isPublished={course.isPublished}
+            pathwayId={params.pathwayId}
+            isPublished={pathway.isPublished}
           />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
           <div>
             <div className="flex items-center gap-x-2">
               <IconBadge icon={LayoutDashboard} variant={"default"} />
-              <h2 className="text-xl">Customize your course</h2>
+              <h2 className="text-xl">Customize your pathway</h2>
             </div>
-            <TitleForm initialData={course} courseId={course.id} />
-            <DescriptionForm initialData={course} courseId={course.id} />
-            <ImageForm initialData={course} courseId={course.id} />
-            <CategoryForm
+            <TitleForm initialData={pathway} pathwayId={pathway.id} />
+            <DescriptionForm initialData={pathway} pathwayId={pathway.id} />
+            <ImageForm initialData={pathway} pathwayId={pathway.id} />
+            {/* <CategoryForm
               initialData={course}
               courseId={course.id}
               options={categories.map((category) => ({
                 label: category.name,
                 value: category.id,
               }))}
-            />
+            /> */}
           </div>
           <div className="space-y-6">
-            <div>
+            {/* <div className="">
               <div className="flex items-center gap-x-2">
                 <IconBadge variant={"default"} icon={ListChecks} />
                 <h2 className="text-xl">Course Chapters</h2>
@@ -102,16 +87,8 @@ export default async function CourseIdPage({
                 <IconBadge variant={"default"} icon={File} />
                 <h2 className="text-xl">Resources & Attachments</h2>
               </div>
-              <AttachmentForm initialData={course} courseId={course.id} />
-            </div>
-            <PathwayForm
-              initialData={course}
-              courseId={course.id}
-              options={pathways.map((pathway) => ({
-                label: pathway.title,
-                value: pathway.id,
-              }))}
-            />
+              <AttachmentForm initialData={pathway} courseId={pathway.id} />
+            </div> */}
           </div>
         </div>
       </div>
