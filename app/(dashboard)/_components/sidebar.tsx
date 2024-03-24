@@ -7,7 +7,7 @@ export default function Sidebar() {
       <div></div>
       <div className="p-6 flex items-center gap-1">
         <Logo />
-        <h1 className="font-semibold text-lg">Marcy Lab</h1>
+        <h1 className="font-semibold text-lg">Marcy Learn</h1>
       </div>
       <div className="flex flex-col w-full">
         <SidebarRoutes />

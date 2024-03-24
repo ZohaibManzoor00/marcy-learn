@@ -26,20 +26,18 @@ const formSchema = z.object({
   }),
 });
 
-export default function CreatePage() {
+export default function CreatePathway() {
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      title: "",
-    },
+    defaultValues: { title: "" },
   });
   const { isSubmitting, isValid } = form.formState;
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const res = await axios.post("/api/courses", values);
-      router.push(`/teacher/courses/${res.data.id}`);
-      toast.success("Course created");
+      const res = await axios.post("/api/pathways", values);
+      router.push(`/teacher/pathways/${res.data.id}`);
+      toast.success("Pathway created");
     } catch (err) {
       toast.error("Something went wrong");
     }
@@ -48,10 +46,9 @@ export default function CreatePage() {
   return (
     <div className="max-w-5xl mx-auto flex md:items-center md:justify-center h-full p-6">
       <div>
-        <h1 className="text-2xl">Name your course</h1>
+        <h1 className="text-2xl">Name your pathway</h1>
         <p className="text-sm text-slate-600">
-          What would you like to name your course? Don&apos;t worry, you can
-          change this later.
+          Don&apos;t worry, you can change this later.
         </p>
         <Form {...form}>
           <form
@@ -64,16 +61,16 @@ export default function CreatePage() {
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Mod title</FormLabel>
+                  <FormLabel>Pathway title</FormLabel>
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder="e.g. Async JavaScript"
+                      placeholder="e.g. Program Manager"
                       {...field}
                     />
                   </FormControl>
                   <FormDescription>
-                    What mod is this related to?
+                    What sector is this related to?
                   </FormDescription>
                   <FormMessage />
                 </FormItem>

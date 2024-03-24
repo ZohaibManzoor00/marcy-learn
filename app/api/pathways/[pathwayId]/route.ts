@@ -10,14 +10,14 @@ const mux = new Mux({
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { courseId: string } }
+  { params }: { params: { pathwayId: string } }
 ) {
   try {
     const { userId } = auth();
     if (!userId) return new NextResponse("Unauthorized", { status: 401 });
-
+    console.log("here");
     const course = await db.course.findUnique({
-      where: { id: params.courseId, userId },
+      where: { id: params.pathwayId, userId },
       include: { chapters: { include: { muxData: true } } },
     });
 
@@ -29,11 +29,12 @@ export async function DELETE(
       }
     }
 
-    const deletedCourse = await db.course.delete({
-      where: { id: params.courseId },
+    await db.course.delete({ where: { id: params.pathwayId } });
+    const deletedPathway = db.pathway.delete({
+      where: { id: params.pathwayId },
     });
 
-    return NextResponse.json(deletedCourse);
+    return NextResponse.json(deletedPathway);
   } catch (err) {
     console.log("[COURSE_ID_DELETE]", err);
     return new NextResponse("Internal Error", { status: 500 });
@@ -42,20 +43,20 @@ export async function DELETE(
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { courseId: string } }
+  { params }: { params: { pathwayId: string } }
 ) {
   try {
     const { userId } = auth();
-    const { courseId } = params;
+    const { pathwayId } = params;
     const values = await req.json();
 
     if (!userId) return new NextResponse("Unauthorized", { status: 401 });
 
-    const course = await db.course.update({
-      where: { id: courseId, userId },
+    const pathway = await db.pathway.update({
+      where: { id: pathwayId, userId },
       data: { ...values },
     });
-    return NextResponse.json(course);
+    return NextResponse.json(pathway);
   } catch (err) {
     console.log("[COURSE_ID]", err);
     return new NextResponse("Internal Error", { status: 500 });
