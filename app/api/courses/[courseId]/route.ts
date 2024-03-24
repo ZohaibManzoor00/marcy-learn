@@ -2,7 +2,6 @@ import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import Mux from "@mux/mux-node";
-import { isTeacher } from "@/lib/teacher";
 
 const mux = new Mux({
   tokenId: process.env.MUX_TOKEN_ID,

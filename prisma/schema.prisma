@@ -8,6 +8,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Pathway {
+  id       String   @id @default(uuid())
+  title    String
+  imageUrl String?  @db.Text
+  courses  Course[]
+}
+
 model Course {
   id          String  @id @default(uuid())
   userId      String
@@ -21,6 +28,7 @@ model Course {
 
   chapters    Chapter[]
   attachments Attachment[]
+  pathway     Pathway[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -94,4 +102,3 @@ model UserProgress {
   @@unique([userId, chapterId])
   @@index([chapterId])
 }
-

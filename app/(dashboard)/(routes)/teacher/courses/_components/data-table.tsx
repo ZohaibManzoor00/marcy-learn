@@ -37,7 +37,9 @@ export function DataTable<TData, TValue>({
   data,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    []
+  );
 
   const table = useReactTable({
     data,
@@ -62,12 +64,20 @@ export function DataTable<TData, TValue>({
           }
           className="max-w-sm"
         />
-        <Link href="/teacher/create">
-          <Button>
-            <PlusCircle className="h-4 w-4 mr-2" />
-            New course
-          </Button>
-        </Link>
+        <div className="flex gap-2">
+          <Link href="/teacher/create/pathway">
+            <Button>
+              <PlusCircle className="h-4 w-4 mr-2" />
+              New pathway
+            </Button>
+          </Link>
+          <Link href="/teacher/create">
+            <Button>
+              <PlusCircle className="h-4 w-4 mr-2" />
+              New course
+            </Button>
+          </Link>
+        </div>
       </div>
       <div className="rounded-md border">
         <Table>
