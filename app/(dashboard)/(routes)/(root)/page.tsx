@@ -6,18 +6,12 @@ import { CoursesList } from "@/components/courses-list";
 import { CheckCircle, Clock } from "lucide-react";
 import InfoCard from "./_components/info-card";
 
-export default async function Dashboard({
-  searchParams,
-}: {
-  searchParams: { title: string };
-}) {
+export default async function Dashboard({ searchParams }: { searchParams: { title: string } }) {
   const { userId } = auth();
   if (!userId) return redirect("/");
 
-  const { completedCourses, coursesInProgress } = await getDashboardCourses(
-    userId, 
-    searchParams?.title
-  );
+  const { completedCourses, coursesInProgress } = await getDashboardCourses(userId, searchParams?.title);
+
   return (
     <div className="p-6 space-y-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

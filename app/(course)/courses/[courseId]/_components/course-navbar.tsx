@@ -10,10 +10,7 @@ interface CourseNavbarProps {
   progressCount: number;
 }
 
-export default function CourseNavbar({
-  course,
-  progressCount,
-}: CourseNavbarProps) {
+export default function CourseNavbar({ course, progressCount }: CourseNavbarProps) {
   return (
     <div className="p-4 border-b h-full bg-white dark:bg-background flex items-center shadow-sm ">
       <CourseMobileSidebar course={course} progressCount={progressCount} />

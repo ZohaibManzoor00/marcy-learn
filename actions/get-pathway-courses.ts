@@ -23,16 +23,8 @@ export const getPathwayCourses = async ({
 }: GetPathwayCoursesProps): Promise<CourseWithProgress[]> => {
   try {
     const courses = await db.course.findMany({
-      where: {
-        isPublished: true,
-        title: { contains: title },
-        categoryId,
-        pathwayId
-      },
-      include: {
-        category: true,
-        chapters: { where: { isPublished: true }, select: { id: true } },
-      },
+      where: { isPublished: true, title: { contains: title }, categoryId, pathwayId },
+      include: { category: true, chapters: { where: { isPublished: true }, select: { id: true } } },
       orderBy: { createdAt: "desc" },
     });
 
@@ -45,7 +37,7 @@ export const getPathwayCourses = async ({
 
     return coursesWithProgress;
   } catch (err) {
-    console.log("[GET_PATHWAY_COURSES]", err);
+    console.log("[GET_PATHWAY_COURSES_WITH_PROGRESS]", err);
     return [];
   }
 };

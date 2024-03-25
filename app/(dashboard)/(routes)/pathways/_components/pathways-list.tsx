@@ -1,6 +1,4 @@
-import { Category, Course } from "@prisma/client";
 import PathwayCourseCard from "./pathway-card";
-import CourseCard from "@/components/course-card";
 
 interface PathwaysListProps {
   items: {
@@ -10,6 +8,7 @@ interface PathwaysListProps {
     description: string | null;
     progress?: number | null;
     courseCount?: number;
+    // category?: string | null 
   }[];
 }
 

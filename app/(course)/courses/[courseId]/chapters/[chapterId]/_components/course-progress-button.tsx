@@ -14,7 +14,6 @@ interface CourseProgressButtonProps {
   courseId: string;
   isCompleted?: boolean;
   nextChapterId?: string;
-  title: string;
 }
 
 export default function CourseProgressButton({
@@ -22,7 +21,6 @@ export default function CourseProgressButton({
   courseId,
   isCompleted,
   nextChapterId,
-  title,
 }: CourseProgressButtonProps) {
   const router = useRouter();
   const confetti = useConfettiStore();
@@ -56,6 +54,7 @@ export default function CourseProgressButton({
       setIsLoading(false);
     }
   };
+  
   return (
     <Button
       onClick={onClick}

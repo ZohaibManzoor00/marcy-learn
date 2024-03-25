@@ -7,7 +7,6 @@ import toast from "react-hot-toast";
 
 import ConfirmModal from "@/components/modals/confirm-modal";
 import { Button } from "@/components/ui/button";
-import { useConfettiStore } from "@/hooks/use-confetti-store";
 import { Trash } from "lucide-react";
 
 interface ActionsProps {
@@ -23,7 +22,6 @@ export default function Actions({
 }: ActionsProps) {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  const confetti = useConfettiStore();
 
   const onClick = async () => {
     try {
@@ -34,7 +32,6 @@ export default function Actions({
       } else {
         await axios.patch(`/api/pathways/${pathwayId}/publish`);
         toast.success("Pathway published");
-        // confetti.onOpen();
       }
       router.refresh();
     } catch {

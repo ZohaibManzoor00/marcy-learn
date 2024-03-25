@@ -15,9 +15,7 @@ interface CollapsibleAttachmentsProps {
   attachments: Attachment[];
 }
 
-export function CollapsibleAttachments({
-  attachments,
-}: CollapsibleAttachmentsProps) {
+export function CollapsibleAttachments({ attachments }: CollapsibleAttachmentsProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (

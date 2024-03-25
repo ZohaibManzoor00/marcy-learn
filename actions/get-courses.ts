@@ -22,24 +22,20 @@ export const getCourses = async ({
   try {
     const courses = await db.course.findMany({
       where: { isPublished: true, title: { contains: title }, categoryId },
-      include: {
-        category: true,
-        chapters: { where: { isPublished: true }, select: { id: true } },
-      },
+      include: { category: true, chapters: { where: { isPublished: true }, select: { id: true } } },
       orderBy: { createdAt: "desc" },
     });
 
     const coursesWithProgress: CourseWithProgressWithCategory[] =
-      await Promise.all(
-        courses.map(async (course) => {
+      await Promise.all(courses.map(async (course) => {
           const progressPercentage = await getProgress(userId, course.id);
           return { ...course, progress: progressPercentage };
-        })
-      );
+      })
+    );
 
     return coursesWithProgress;
   } catch (err) {
-    console.log("[GET_COURSES]", err);
+    console.log("[GET_COURSES_WITH_PROGRESS]", err);
     return [];
   }
 };

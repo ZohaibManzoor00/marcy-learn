@@ -13,11 +13,7 @@ import ChapterActions from "./_components/chapter-actions";
 
 import { ArrowLeft, Eye, LayoutDashboard, Video } from "lucide-react";
 
-export default async function ChapterIdPage({
-  params,
-}: {
-  params: { courseId: string; chapterId: string };
-}) {
+export default async function ChapterIdPage({ params }: { params: { courseId: string; chapterId: string } }) {
   const { userId } = auth();
 
   if (!userId) return redirect("/");

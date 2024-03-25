@@ -3,7 +3,7 @@ import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
 
 import IconBadge from "@/components/icon-badge";
-import { File, LayoutDashboard, ListChecks, Lock } from "lucide-react";
+import { File, LayoutDashboard, ListChecks } from "lucide-react";
 import TitleForm from "./_components/title-form";
 import DescriptionForm from "./_components/description-form";
 import ImageForm from "./_components/image-form";
@@ -14,11 +14,7 @@ import Banner from "@/components/banner";
 import Actions from "./_components/actions";
 import PathwayForm from "./_components/pathway-form";
 
-export default async function CourseIdPage({
-  params,
-}: {
-  params: { courseId: string };
-}) {
+export default async function CourseIdPage({ params }: { params: { courseId: string } }) {
   const { userId } = auth();
   if (!userId) return redirect("/");
 
@@ -48,7 +44,7 @@ export default async function CourseIdPage({
   const completionText = `${completedFields}/${totalFields}`;
 
   const isComplete = requiredFields.every(Boolean);
-  console.log(categories)
+  
   return (
     <>
       {!course.isPublished && (

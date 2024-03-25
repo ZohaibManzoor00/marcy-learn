@@ -71,12 +71,6 @@ export function DataTable<TData, TValue>({
               New pathway
             </Button>
           </Link>
-          <Link href="/teacher/create">
-            <Button>
-              <PlusCircle className="h-4 w-4 mr-2" />
-              New course
-            </Button>
-          </Link>
         </div>
       </div>
       <div className="rounded-md border">

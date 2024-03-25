@@ -29,9 +29,7 @@ export async function DELETE(
       }
     }
 
-    const deletedCourse = await db.course.delete({
-      where: { id: params.courseId },
-    });
+    const deletedCourse = await db.course.delete({ where: { id: params.courseId } });
 
     return NextResponse.json(deletedCourse);
   } catch (err) {
@@ -55,6 +53,7 @@ export async function PATCH(
       where: { id: courseId, userId },
       data: { ...values },
     });
+    
     return NextResponse.json(course);
   } catch (err) {
     console.log("[COURSE_ID]", err);
