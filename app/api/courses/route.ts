@@ -8,13 +8,9 @@ export async function POST(req: Request) {
     const { userId } = auth();
     const { title } = await req.json();
 
-    if (!userId || !isTeacher(userId)) {
-      return new NextResponse("Unauthorized", { status: 401 });
-    }
+    if (!userId || !isTeacher(userId)) return new NextResponse("Unauthorized", { status: 401 });
 
-    const course = await db.course.create({
-      data: { userId, title },
-    });
+    const course = await db.course.create({ data: { userId, title } });
 
     return NextResponse.json(course);
   } catch (err) {

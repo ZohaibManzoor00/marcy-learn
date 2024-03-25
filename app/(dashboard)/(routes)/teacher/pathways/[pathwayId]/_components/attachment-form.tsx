@@ -13,7 +13,6 @@ import FileUpload from "@/components/file-upload";
 
 interface AttachmentFormProps {
   initialData: Pathway & { attachments: Attachment[] };
-  // initialData: Pathway;
   pathwayId: string;
 }
 

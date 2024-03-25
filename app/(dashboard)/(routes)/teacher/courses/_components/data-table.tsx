@@ -65,12 +65,6 @@ export function DataTable<TData, TValue>({
           className="max-w-sm"
         />
         <div className="flex gap-2">
-          <Link href="/teacher/createPathway">
-            <Button>
-              <PlusCircle className="h-4 w-4 mr-2" />
-              New pathway
-            </Button>
-          </Link>
           <Link href="/teacher/create">
             <Button>
               <PlusCircle className="h-4 w-4 mr-2" />

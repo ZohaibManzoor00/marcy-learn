@@ -29,6 +29,7 @@ export default async function ChapterIdPage({
   if (!chapter || !course) return redirect("/");
 
   const completeOnEnd = !userProgress?.isCompleted;
+  
   const isLocked = !chapter.isFree;
 
   const progress  = await getProgress(userId, course.id)
@@ -73,7 +74,6 @@ export default async function ChapterIdPage({
                 courseId={params.courseId}
                 nextChapterId={nextChapter?.id}
                 isCompleted={!!userProgress?.isCompleted}
-                title={chapter.title}
               />
             )}
           </div>

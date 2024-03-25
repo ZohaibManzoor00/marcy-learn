@@ -13,40 +13,24 @@ export const getChapter = async ({
   chapterId,
 }: GetChapterProps) => {
   try {
-    const course = await db.course.findUnique({
-      where: { id: courseId, isPublished: true },
-    });
+    const course = await db.course.findUnique({ where: { id: courseId, isPublished: true } });
 
-    const chapter = await db.chapter.findUnique({
-      where: { id: chapterId, isPublished: true },
-    });
+    const chapter = await db.chapter.findUnique({where: { id: chapterId, isPublished: true } });
 
     if (!chapter || !course) throw new Error("Chapter or course not found");
 
-    let muxData = null,
-      attachments: Attachment[] = [],
-      nextChapter: Chapter | null = null;
+    let muxData = null, attachments: Attachment[] = [], nextChapter: Chapter | null = null;
 
-      attachments = await db.attachment.findMany({
-        where: { courseId },
-      });
+    attachments = await db.attachment.findMany({ where: { courseId } });
 
-      muxData = await db.muxData.findUnique({
-        where: { chapterId },
-      });
+    muxData = await db.muxData.findUnique({ where: { chapterId } });
 
-      nextChapter = await db.chapter.findFirst({
-        where: {
-          courseId,
-          isPublished: true,
-          position: { gt: chapter?.position },
-        },
-        orderBy: { position: "asc" },
-      });
-
-    const userProgress = await db.userProgress.findUnique({
-      where: { userId_chapterId: { userId, chapterId } },
+    nextChapter = await db.chapter.findFirst({
+      where: { courseId, isPublished: true, position: { gt: chapter?.position } },
+      orderBy: { position: "asc" }
     });
+
+    const userProgress = await db.userProgress.findUnique({ where: { userId_chapterId: { userId, chapterId } } });
 
     return {
       chapter,

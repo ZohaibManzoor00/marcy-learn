@@ -27,13 +27,8 @@ export default function ChaptersList({
   const [isMounted, setIsMounted] = useState(false);
   const [chapters, setChapters] = useState(items);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  useEffect(() => {
-    setChapters(items);
-  }, [items]);
+  useEffect(() => setIsMounted(true), []);
+  useEffect(() => setChapters(items), [items]);
 
   if (!isMounted) return null;
 
@@ -53,7 +48,7 @@ export default function ChaptersList({
 
     const bulkUpdateDate = updatedChapters.map((chapter) => ({
       id: chapter.id,
-      position: items.findIndex((item) => item.id === chapter.id),
+      position: items.findIndex(item => item.id === chapter.id),
     }));
 
     onReorder(bulkUpdateDate);

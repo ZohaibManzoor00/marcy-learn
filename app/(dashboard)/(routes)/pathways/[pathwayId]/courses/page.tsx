@@ -17,11 +17,7 @@ export default async function PathwayCourses({
   const { userId } = auth();
   if (!userId) return redirect("/");
 
-  const coursesInPathway = await getPathwayCourses({
-    userId,
-    ...searchParams,
-    ...params,
-  });
+  const coursesInPathway = await getPathwayCourses({ userId, ...searchParams, ...params });
 
   return (
     <>

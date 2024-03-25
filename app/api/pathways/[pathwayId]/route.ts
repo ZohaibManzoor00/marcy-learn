@@ -9,7 +9,7 @@ const mux = new Mux({
 });
 
 export async function DELETE(
-  req: Request,
+  _req: Request,
   { params }: { params: { pathwayId: string } }
 ) {
   try {
@@ -30,9 +30,7 @@ export async function DELETE(
     }
 
     await db.course.delete({ where: { id: params.pathwayId } });
-    const deletedPathway = db.pathway.delete({
-      where: { id: params.pathwayId },
-    });
+    const deletedPathway = db.pathway.delete({ where: { id: params.pathwayId } });
 
     return NextResponse.json(deletedPathway);
   } catch (err) {

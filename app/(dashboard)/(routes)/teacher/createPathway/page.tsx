@@ -28,11 +28,14 @@ const formSchema = z.object({
 
 export default function CreatePathway() {
   const router = useRouter();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: { title: "" },
   });
+
   const { isSubmitting, isValid } = form.formState;
+
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       const res = await axios.post("/api/pathways", values);
@@ -53,9 +56,7 @@ export default function CreatePathway() {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="
-        space-y-8 mt-8"
-          >
+            className="space-y-8 mt-8">
             <FormField
               control={form.control}
               name="title"

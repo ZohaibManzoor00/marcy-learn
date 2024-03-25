@@ -8,11 +8,10 @@ import { isTeacher } from "@/lib/teacher";
 
 export default async function CoursesPage() {
   const { userId } = auth();
+  
   if (!userId || !isTeacher(userId)) return redirect("/");
-  const courses = await db.course.findMany({
-    where: { userId },
-    orderBy: { createdAt: "desc" },
-  });
+  
+  const courses = await db.course.findMany({ where: { userId }, orderBy: { createdAt: "desc" } });
 
   return (
     <div className="p-6">

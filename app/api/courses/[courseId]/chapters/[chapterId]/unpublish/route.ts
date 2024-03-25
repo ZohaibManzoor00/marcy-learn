@@ -11,9 +11,7 @@ export async function PATCH(
 
     if (!userId) return new NextResponse("Unauthorized", { status: 401 });
 
-    const ownCourse = await db.course.findUnique({
-      where: { id: params.courseId, userId },
-    });
+    const ownCourse = await db.course.findUnique({ where: { id: params.courseId, userId } });
 
     if (!ownCourse) return new NextResponse("Unauthorized", { status: 401 });
 
@@ -22,15 +20,10 @@ export async function PATCH(
       data: { isPublished: false },
     });
 
-    const publishedChaptersInCourse = await db.chapter.findMany({
-      where: { courseId: params.courseId, isPublished: true },
-    });
+    const publishedChaptersInCourse = await db.chapter.findMany({ where: { courseId: params.courseId, isPublished: true } });
 
     if (!publishedChaptersInCourse.length) {
-      await db.course.update({
-        where: { id: params.courseId },
-        data: { isPublished: false },
-      });
+      await db.course.update({ where: { id: params.courseId }, data: { isPublished: false } });
     }
 
     return NextResponse.json(unpublishChapter);

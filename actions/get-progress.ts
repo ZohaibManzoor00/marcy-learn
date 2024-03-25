@@ -10,17 +10,14 @@ export const getProgress = async (
       select: { id: true },
     });
 
-    const publishedChapterIds = publishedChapters.map((chapter) => chapter.id);
-    const validCompletedChapters = await db.userProgress.count({
-      where: {
-        userId,
-        chapterId: { in: publishedChapterIds },
-        isCompleted: true,
-      },
-    });
+    const publishedChapterIds = publishedChapters.map(chapter => chapter.id);
 
-    const progressPercentage =
-      (validCompletedChapters / publishedChapterIds.length) * 100;
+    const validCompletedChapters = await db.userProgress.count({
+      where: { userId, chapterId: { in: publishedChapterIds }, isCompleted: true } }
+    );
+
+    const progressPercentage = (validCompletedChapters / publishedChapterIds.length) * 100;
+
     return progressPercentage;
   } catch (err) {
     console.log("[GET_PROGRESS]", err);

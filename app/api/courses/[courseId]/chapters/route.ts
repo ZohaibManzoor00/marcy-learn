@@ -9,13 +9,11 @@ export async function POST(
   try {
     const { userId } = auth();
     const { title } = await req.json();
+
     if (!userId) return new NextResponse("Unauthorized", { status: 401 });
 
     const courseOwner = await db.course.findUnique({
-      where: {
-        id: params.courseId,
-        userId,
-      },
+      where: { id: params.courseId, userId },
     });
 
     if (!courseOwner) return new NextResponse("Unauthorized", { status: 401 });
@@ -26,9 +24,7 @@ export async function POST(
     });
 
     const newPosition = lastChapter ? lastChapter.position + 1 : 1;
-    const chapter = await db.chapter.create({
-      data: { title, courseId: params.courseId, position: newPosition },
-    });
+    const chapter = await db.chapter.create({ data: { title, courseId: params.courseId, position: newPosition } });
 
     return NextResponse.json(chapter);
   } catch (err) {

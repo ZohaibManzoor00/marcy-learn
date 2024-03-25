@@ -12,9 +12,7 @@ export async function PUT(
 
     const { list } = await req.json();
 
-    const ownCourse = await db.course.findUnique({
-      where: { id: params.courseId, userId },
-    });
+    const ownCourse = await db.course.findUnique({ where: { id: params.courseId, userId } });
 
     if (!ownCourse) return new NextResponse("Unauthorized", { status: 401 });
 

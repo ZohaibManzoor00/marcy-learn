@@ -3,7 +3,7 @@ import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
 export async function PATCH(
-  req: Request,
+  _req: Request,
   { params }: { params: { pathwayId: string } }
 ) {
   try {

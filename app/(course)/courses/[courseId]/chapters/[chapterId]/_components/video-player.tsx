@@ -4,10 +4,10 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
+import MuxPlayer from "@mux/mux-player-react";
 
 import { cn } from "@/lib/utils";
 import { useConfettiStore } from "@/hooks/use-confetti-store";
-import MuxPlayer from "@mux/mux-player-react";
 
 import { Loader2, Lock } from "lucide-react";
 
@@ -48,11 +48,9 @@ export const VideoPlayer = ({
           router.refresh()
           return 
         }
-
         
-        if (nextChapterId) {
-          router.push(`/courses/${courseId}/chapters/${nextChapterId}`);
-        }
+        if (nextChapterId) router.push(`/courses/${courseId}/chapters/${nextChapterId}`);
+        
         toast.success("Progress Updated");
         router.refresh();
       }
