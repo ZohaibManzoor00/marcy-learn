@@ -30,7 +30,7 @@ export function DropdownMenuCategory({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="w-full">
-        <Button variant="outline">{value ? options.find(option => option.value === value)?.label : "Select a Category"}</Button>
+        <Button variant="outline">{value ? options.find(option => option.value === value)?.label : "Select an option"}</Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         <DropdownMenuLabel className="text-center">
