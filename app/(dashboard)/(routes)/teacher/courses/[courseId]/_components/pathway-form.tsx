@@ -60,14 +60,12 @@ export default function PathwayForm({
     }
   };
 
-  const selectedOption = options.find(
-    (option) => option.value === initialData.pathwayId
-  );
+  const selectedOption = options.find(option => option.value === initialData.pathwayId);
 
   return (
     <div className="mt-6 border bg-slate-100 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Course pathway
+        Related pathway
         <Button variant="ghost" onClick={toggleEdit}>
           {isEditing ? (
             <>Cancel</>

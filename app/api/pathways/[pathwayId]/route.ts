@@ -16,25 +16,28 @@ export async function DELETE(
     const { userId } = auth();
     if (!userId) return new NextResponse("Unauthorized", { status: 401 });
 
-    const course = await db.course.findUnique({
-      where: { id: params.pathwayId, userId },
+    const pathway = await db.pathway.findUnique({ where: { id: params.pathwayId }})
+
+    if (!pathway) return new NextResponse("Not found", { status: 404 }); 
+
+    const coursesToDelete = await db.course.findMany({
+      where: { pathwayId: params.pathwayId },
       include: { chapters: { include: { muxData: true } } },
     });
 
-    if (!course) return new NextResponse("Not found", { status: 404 });
-
-    for (const chapter of course.chapters) {
-      if (chapter.muxData?.assetId) {
-        await mux.video.assets.delete(chapter.muxData.assetId);
-      }
+    for (const course of coursesToDelete) {
+      for (const chapter of course.chapters) {
+        if (chapter?.muxData) await mux.video.assets.delete(chapter.muxData.assetId)
+      } 
     }
 
-    await db.course.delete({ where: { id: params.pathwayId } });
-    const deletedPathway = db.pathway.delete({ where: { id: params.pathwayId } });
+    await db.course.deleteMany({ where: { pathwayId: params.pathwayId } });
+
+    const deletedPathway = await db.pathway.delete({ where: { id: params.pathwayId } });
 
     return NextResponse.json(deletedPathway);
   } catch (err) {
-    console.log("[COURSE_ID_DELETE]", err);
+    console.log("[PATHWAY_ID_DELETE]", err);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }
@@ -54,9 +57,10 @@ export async function PATCH(
       where: { id: pathwayId, userId },
       data: { ...values },
     });
+
     return NextResponse.json(pathway);
   } catch (err) {
-    console.log("[COURSE_ID]", err);
+    console.log("[PATHWAY_ID]", err);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { Layout, Compass, BarChart, List } from "lucide-react";
+import { Layout, Compass, BarChart, List, Users, BookText } from "lucide-react";
 import SidebarItem from "./sidebar-items";
 
 const guestRoutes = [
@@ -11,7 +11,7 @@ const guestRoutes = [
     href: "/",
   },
   {
-    icon: Compass,
+    icon: Users,
     label: "Pathways",
     href: "/pathways",
   },
@@ -20,12 +20,12 @@ const guestRoutes = [
 
 const teacherRoutes = [
   {
-    icon: List,
+    icon: BookText,
     label: "Courses",
     href: "/teacher/courses",
   },
   {
-    icon: Compass,
+    icon: Users,
     label: "Pathways",
     href: "/teacher/pathways",
   },
