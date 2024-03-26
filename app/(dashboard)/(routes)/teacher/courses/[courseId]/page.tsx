@@ -14,7 +14,11 @@ import Banner from "@/components/banner";
 import Actions from "./_components/actions";
 import PathwayForm from "./_components/pathway-form";
 
-export default async function CourseIdPage({ params }: { params: { courseId: string } }) {
+export default async function CourseIdPage({
+  params,
+}: {
+  params: { courseId: string };
+}) {
   const { userId } = auth();
   if (!userId) return redirect("/");
 
@@ -36,6 +40,7 @@ export default async function CourseIdPage({ params }: { params: { courseId: str
     course.description,
     course.imageUrl,
     course.categoryId,
+    course.pathwayId,
     course.chapters.some((chapter) => chapter.isPublished),
   ];
 
@@ -44,7 +49,7 @@ export default async function CourseIdPage({ params }: { params: { courseId: str
   const completionText = `${completedFields}/${totalFields}`;
 
   const isComplete = requiredFields.every(Boolean);
-  
+
   return (
     <>
       {!course.isPublished && (
@@ -76,14 +81,6 @@ export default async function CourseIdPage({ params }: { params: { courseId: str
             <TitleForm initialData={course} courseId={course.id} />
             <DescriptionForm initialData={course} courseId={course.id} />
             <ImageForm initialData={course} courseId={course.id} />
-            <CategoryForm
-              initialData={course}
-              courseId={course.id}
-              options={categories.map((category) => ({
-                label: category.name,
-                value: category.id,
-              }))}
-            />
           </div>
           <div className="space-y-6">
             <div>
@@ -100,12 +97,22 @@ export default async function CourseIdPage({ params }: { params: { courseId: str
               </div>
               <AttachmentForm initialData={course} courseId={course.id} />
             </div>
-            <PathwayForm
+            <div>
+              <PathwayForm
+                initialData={course}
+                courseId={course.id}
+                options={pathways.map((pathway) => ({
+                  label: pathway.title,
+                  value: pathway.id,
+                }))}
+              />
+            </div>
+            <CategoryForm
               initialData={course}
               courseId={course.id}
-              options={pathways.map((pathway) => ({
-                label: pathway.title,
-                value: pathway.id,
+              options={categories.map((category) => ({
+                label: category.name,
+                value: category.id,
               }))}
             />
           </div>

@@ -22,7 +22,7 @@ model Pathway {
   courses    Course[]
   
   categoryId String?
-  category   Category? @relation(fields: [categoryId], references: [id])
+  category   Category? @relation(fields: [categoryId], references: [id],  onDelete: Cascade)
 
   @@index([categoryId])
 }
@@ -36,9 +36,9 @@ model Course {
   isPublished Boolean @default(false)
 
   categoryId String?
-  category   Category? @relation(fields: [categoryId], references: [id])
+  category   Category? @relation(fields: [categoryId], references: [id],  onDelete: Cascade)
 
-  pathway   Pathway? @relation(fields: [pathwayId], references: [id])
+  pathway   Pathway? @relation(fields: [pathwayId], references: [id],  onDelete: Cascade)
   pathwayId String?
 
   chapters    Chapter[]

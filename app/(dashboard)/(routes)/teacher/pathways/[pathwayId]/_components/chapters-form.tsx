@@ -75,7 +75,8 @@ export default function ChaptersForm({
     }
   };
 
-  const onEdit = (id: string) => router.push(`/teacher/courses/${courseId}/chapters/${id}`);
+  const onEdit = (id: string) =>
+    router.push(`/teacher/courses/${courseId}/chapters/${id}`);
 
   return (
     <div className="relative mt-6 border bg-slate-100 rounded-md p-4">
@@ -141,7 +142,7 @@ export default function ChaptersForm({
       )}
       {!isCreating && (
         <p className="text-xs text-muted-foreground mt-4">
-          Drag and drop to reorder the chapters
+          Drag and drop to reorder chapters
         </p>
       )}
     </div>
