@@ -12,8 +12,13 @@ import ChapterVideoForm from "./_components/chapter-video-form";
 import ChapterActions from "./_components/chapter-actions";
 
 import { ArrowLeft, Eye, LayoutDashboard, Video } from "lucide-react";
+import Editor from "@/components/notion-editor";
 
-export default async function ChapterIdPage({ params }: { params: { courseId: string; chapterId: string } }) {
+export default async function ChapterIdPage({
+  params,
+}: {
+  params: { courseId: string; chapterId: string };
+}) {
   const { userId } = auth();
 
   if (!userId) return redirect("/");

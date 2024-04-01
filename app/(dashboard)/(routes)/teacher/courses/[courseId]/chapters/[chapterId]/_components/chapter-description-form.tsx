@@ -8,6 +8,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { Chapter } from "@prisma/client";
+import dynamic from "next/dynamic";
+import { useMemo } from "react";
 
 import {
   Form,
@@ -19,8 +21,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { Pencil } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Editor } from "@/components/editer";
+// import { Editor } from "@/components/editer";
 import { Preview } from "@/components/preview";
+import EditorPreview from "@/components/notion-preview";
+// import Editor from "@/components/notion-editor";
 
 interface ChapterDescriptionFormProps {
   initialData: Chapter;
@@ -37,6 +41,10 @@ export default function ChapterDescriptionForm({
   courseId,
   chapterId,
 }: ChapterDescriptionFormProps) {
+  const Editor = useMemo(
+    () => dynamic(() => import("@/components/notion-editor"), { ssr: false }), []
+  );
+
   const [isEditing, setIsEditing] = useState(false);
   const toggleEdit = () => setIsEditing(!isEditing);
 
@@ -85,9 +93,12 @@ export default function ChapterDescriptionForm({
           )}
         >
           {!initialData.description && "No description"}
-          {initialData.description && (
+          {/* {initialData.description && (
             <Preview value={initialData.description} />
-          )}
+          )} */}
+           {initialData.description && (
+            <EditorPreview editable={false} initialContent={initialData.description} />
+          )}          
         </div>
       )}
       {isEditing && (
@@ -102,6 +113,7 @@ export default function ChapterDescriptionForm({
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
+                    {/* <Editor {...field} /> */}
                     <Editor {...field} />
                   </FormControl>
                   <FormMessage />

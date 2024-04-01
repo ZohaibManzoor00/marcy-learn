@@ -10,6 +10,8 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@blocknote/core": "^0.9.4",
+    "@blocknote/react": "^0.9.4",
     "@clerk/nextjs": "^4.29.9",
     "@clerk/themes": "^1.7.10",
     "@hello-pangea/dnd": "^16.5.0",
