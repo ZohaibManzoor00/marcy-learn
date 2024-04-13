@@ -11,7 +11,7 @@ export default async function Analytics() {
   if (!userId || !isTeacher(userId)) return redirect("/");
 
   const { data, totalComplete, totalInProgress } = await getAnalytics();
-
+  // console.log({data, totalComplete, totalInProgress})
   return (
     <div className="p-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">

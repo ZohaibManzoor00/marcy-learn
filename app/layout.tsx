@@ -20,8 +20,8 @@ export const metadata: Metadata = {
       },
       {
         media: "(prefers-color-scheme: dark)",
-        url: "/marcy-logo.png",
-        href: "/marcy-logo.png",
+        url: "/marcy-logo-dark.png",
+        href: "/marcy-logo-dark.png",
       },
     ],
   },
