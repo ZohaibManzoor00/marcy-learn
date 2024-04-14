@@ -29,7 +29,7 @@ const iconMap: Record<Category["name"], IconType> = {
   "Mod 7": BiLogoReact,
   "Mod 8": AiOutlineConsoleSql,
   "Mod 9": BiServer,
-  "Other": GrTechnology,
+  // "Other": "GrTechnology",
 };
 
 export default function Categories({ items }: CategoriesProps) {
