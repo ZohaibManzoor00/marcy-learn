@@ -39,7 +39,7 @@ export default async function PathwayIdPage({
   const courses = await db.pathway.findUnique({
     where: { id: params.pathwayId },
     include: {
-      courses: { orderBy: { createdAt: "asc" } },
+      courses: { orderBy: { position: "asc" } },
     },
   });
 

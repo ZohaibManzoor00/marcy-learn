@@ -50,7 +50,7 @@ export default function CoursesForm({
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await axios.post(`/api/courses/`, { ...values, pathwayId }); // CHANGE TO URL
+      await axios.post(`/api/courses/`, { ...values, pathwayId });
       toast.success("Course created");
       toggleCreating();
       form.reset();
@@ -63,7 +63,7 @@ export default function CoursesForm({
   const onReorder = async (updateData: { id: string; position: number }[]) => {
     try {
       setIsUpdating(true);
-      await axios.put(`/api/courses/${pathwayId}/chapters/reorder`, {
+      await axios.put(`/api/pathways/${pathwayId}/courses/reorder`, {
         list: updateData,
       });
       toast.success("Courses reordered");
@@ -75,8 +75,7 @@ export default function CoursesForm({
     }
   };
 
-  const onEdit = (id: string) =>
-    router.push(`/teacher/courses/${id}`);
+  const onEdit = (id: string) => router.push(`/teacher/courses/${id}`);
 
   return (
     <div className="relative mt-6 border bg-slate-100 dark:bg-slate-900 rounded-md p-4">
@@ -111,7 +110,7 @@ export default function CoursesForm({
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder="e.g. 'How to become more technical' "
+                      placeholder="e.g. 'Becoming more technical' "
                       {...field}
                     />
                   </FormControl>
