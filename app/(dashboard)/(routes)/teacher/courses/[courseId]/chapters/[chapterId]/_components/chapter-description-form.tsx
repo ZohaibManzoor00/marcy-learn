@@ -19,8 +19,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { Pencil } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Editor } from "@/components/editer";
+import { Editor } from "@/components/editor";
 import { Preview } from "@/components/preview";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
 
 interface ChapterDescriptionFormProps {
   initialData: Chapter;
@@ -38,6 +40,7 @@ export default function ChapterDescriptionForm({
   chapterId,
 }: ChapterDescriptionFormProps) {
   const [isEditing, setIsEditing] = useState(false);
+  const [editorType, setEditorType] = useState("snow");
   const toggleEdit = () => setIsEditing(!isEditing);
 
   const router = useRouter();
@@ -62,6 +65,9 @@ export default function ChapterDescriptionForm({
       toast.error("Something went wrong");
     }
   };
+
+  const toggleEditor = () =>
+    setEditorType(editorType === "snow" ? "bubble" : "snow");
 
   return (
     <div className="mt-6 border bg-slate-100 dark:bg-slate-900 rounded-md p-4">
@@ -88,6 +94,12 @@ export default function ChapterDescriptionForm({
           {initialData.description && (
             <Preview value={initialData.description} />
           )}
+          <div className="flex items-center gap-2 mr-4 justify-end">
+            <Switch checked={editorType === 'snow'} onCheckedChange={toggleEditor} id="editor-mode" />
+            <Label htmlFor="editor-mode">
+              {editorType === "snow" ? "Editor" : "Bubble"}
+            </Label>
+          </div>
         </div>
       )}
       {isEditing && (
@@ -102,7 +114,7 @@ export default function ChapterDescriptionForm({
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Editor {...field} />
+                    <Editor {...field} editorType={editorType} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

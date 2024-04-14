@@ -42,7 +42,7 @@ export default function CategoryItem({
       className={cn(
         "py-2 px-3 text-sm border border-slate-200 rounded-full flex items-center gap-x-1 hover:border-zinc-700 dark:hover:bg-slate-900 dark:hover:border-slate-500  transition",
         isSelected &&
-          "border-zinc-700 bg-zinc-200/20 text-zinc-800 dark:text-gray-100 dark:border-2 dark:border-slate-500 dark:bg-slate-800"
+          "border-zinc-700 dark:hover:bg-background-slate-800 bg-zinc-200/20 text-zinc-800 dark:text-gray-100 dark:border-slate-500 dark:bg-slate-800"
       )}
       typeof="button"
     >

@@ -14,9 +14,7 @@ export const ConfettiProvider = () => {
       className="pointer-events-none z-[100]"
       numberOfPieces={500}
       recycle={false}
-      onConfettiComplete={() => {
-        confetti.onClose();
-      }}
+      onConfettiComplete={() => confetti.onClose()}
     />
   );
 };

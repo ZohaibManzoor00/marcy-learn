@@ -9,6 +9,8 @@ import { LogOut } from "lucide-react";
 import DarkModeToggler from "./dark-mode-toggler";
 import SearchInput from "./search-input";
 import { isTeacher } from "@/lib/teacher";
+import { dark } from "@clerk/themes";
+import { useTheme } from "next-themes";
 
 export default function NavbarRoutes() {
   const { userId } = useAuth();
@@ -18,6 +20,8 @@ export default function NavbarRoutes() {
   const isCoursePage = pathname?.includes("/courses");
   const isPathwayPage = pathname?.startsWith("/pathways");
   const isDashboard = pathname === "/";
+
+  const { theme } = useTheme() 
 
   return (
     <>
@@ -43,7 +47,10 @@ export default function NavbarRoutes() {
         ) : null}
         <DarkModeToggler />
         <div className="mt-1">
-          <UserButton afterSignOutUrl="/" />
+          <UserButton
+            appearance={{ baseTheme: theme === "dark" ? dark : undefined }}
+            afterSignOutUrl="/"
+          />
         </div>
       </div>
     </>
