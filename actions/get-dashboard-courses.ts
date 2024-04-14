@@ -15,14 +15,15 @@ type DashboardCourses = {
 
 export const getDashboardCourses = async (
   userId: string, 
-  title?: string 
+  title?: string, 
+  categoryId?: string
 ): Promise<DashboardCourses> => {
   try {
     const coursesInProgress = await db.course.findMany({
       where: {
-        chapters: {
-          some: { userProgress: { some: { userId, isCompleted: true } }, isPublished: true } },
-        title: { contains: title }
+        chapters: { some: { userProgress: { some: { userId, isCompleted: true } }, isPublished: true } },
+        title: { contains: title }, 
+        categoryId
       },
       include: {
         category: true,
