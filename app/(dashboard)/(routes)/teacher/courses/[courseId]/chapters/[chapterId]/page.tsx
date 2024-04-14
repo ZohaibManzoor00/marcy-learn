@@ -13,7 +13,11 @@ import ChapterActions from "./_components/chapter-actions";
 
 import { ArrowLeft, Eye, LayoutDashboard, Video } from "lucide-react";
 
-export default async function ChapterIdPage({ params }: { params: { courseId: string; chapterId: string } }) {
+export default async function ChapterIdPage({
+  params,
+}: {
+  params: { courseId: string; chapterId: string };
+}) {
   const { userId } = auth();
 
   if (!userId) return redirect("/");
@@ -94,17 +98,6 @@ export default async function ChapterIdPage({ params }: { params: { courseId: st
                 chapterId={params.chapterId}
               />
             </div>
-            <div>
-              <div className="flex items-center gap-x-2">
-                <IconBadge icon={Eye} variant={"primary"} />
-                <h2 className="text-xl">Access Settings</h2>
-              </div>
-              <ChapterAccessForm
-                initialData={chapter}
-                courseId={params.courseId}
-                chapterId={params.chapterId}
-              />
-            </div>
           </div>
           <div>
             <div className="flex items-center gap-x-2">
@@ -116,6 +109,17 @@ export default async function ChapterIdPage({ params }: { params: { courseId: st
               chapterId={params.chapterId}
               courseId={params.courseId}
             />
+            <div className="mt-5">
+              <div className="flex items-center gap-x-2">
+                <IconBadge icon={Eye} variant={"primary"} />
+                <h2 className="text-xl">Access Settings</h2>
+              </div>
+              <ChapterAccessForm
+                initialData={chapter}
+                courseId={params.courseId}
+                chapterId={params.chapterId}
+              />
+            </div>
           </div>
         </div>
       </div>

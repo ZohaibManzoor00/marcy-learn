@@ -23,11 +23,7 @@ const formSchema = z.object({
   videoUrl: z.string().min(1),
 });
 
-export default function ChapterVideoForm({
-  initialData,
-  courseId,
-  chapterId,
-}: ChapterVideoFormProps) {
+export default function ChapterVideoForm({ initialData, courseId, chapterId }: ChapterVideoFormProps) {
   const [isEditing, setIsEditing] = useState(false);
   const toggleEdit = () => setIsEditing(!isEditing);
 
@@ -35,11 +31,8 @@ export default function ChapterVideoForm({
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await axios.patch(
-        `/api/courses/${courseId}/chapters/${chapterId}`,
-        values
-      );
-      toast.success("Chapter updated");
+      await axios.patch(`/api/courses/${courseId}/chapters/${chapterId}`, values);
+      toast.success("Chapter video updated");
       router.refresh();
       toggleEdit();
     } catch (err) {
@@ -49,7 +42,7 @@ export default function ChapterVideoForm({
 
   return (
     <div className="mt-6 border bg-slate-100 dark:bg-slate-900 rounded-md p-4">
-      <div className="font-medium flex items-center justify-between">
+      <div className="font-medium flex items-center justify-between mb-2">
         Chapter video
         <Button variant="ghost" onClick={toggleEdit}>
           {isEditing && <>Cancel</>}
@@ -87,6 +80,7 @@ export default function ChapterVideoForm({
             onChange={(url) => {
               if (url) onSubmit({ videoUrl: url });
             }}
+            video
           />
           <div className="text-xs text-muted-foreground mt-4">
             Upload this chapter&apos;s video
