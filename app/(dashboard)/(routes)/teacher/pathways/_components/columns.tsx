@@ -5,7 +5,12 @@ import { Pathway } from "@prisma/client";
 
 import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
-import { ArrowUpDown, MoreHorizontal, Pencil } from "lucide-react";
+import {
+  ArrowUpDown,
+  BookOpenCheck,
+  MoreHorizontal,
+  Pencil,
+} from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,16 +19,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-/*
-id: string;
-    userId: string;
-    title: string;
-    description: string | null;
-    imageUrl: string | null;
-    isPublished: boolean;
-    createdAt: Date;
-    updatedAt: Date;
-*/
+
 export const columns: ColumnDef<Pathway>[] = [
   {
     accessorKey: "title",
@@ -55,7 +51,12 @@ export const columns: ColumnDef<Pathway>[] = [
     cell: ({ row }) => {
       const isPublished = row.getValue("isPublished") || false;
       return (
-        <Badge className={cn("bg-slate-500", isPublished && "bg-sky-700")}>
+        <Badge
+          className={cn(
+            "bg-slate-500 dark:text-gray-100 hover:bg-sky-600",
+            isPublished && "bg-sky-700"
+          )}
+        >
           {isPublished ? "Published" : "Draft"}
         </Badge>
       );
@@ -78,6 +79,12 @@ export const columns: ColumnDef<Pathway>[] = [
               <DropdownMenuItem>
                 <Pencil className="h-4 w-4 mr-2" />
                 Edit
+              </DropdownMenuItem>
+            </Link>
+            <Link href={`/pathways/${id}/courses`}>
+              <DropdownMenuItem>
+                <BookOpenCheck className="h-4 w-4 mr-2" />
+                Courses
               </DropdownMenuItem>
             </Link>
           </DropdownMenuContent>

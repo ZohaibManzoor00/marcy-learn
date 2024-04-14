@@ -48,7 +48,7 @@ export default function SidebarItem({
         </div>
         <div
           className={cn(
-            "ml-auto opacity-0 border-2 border-zinc-700 dark:border-gray-300 h-full transition-all",
+            "ml-auto opacity-0 border-2 border-zinc-700 dark:border-gray-200 h-full transition-all",
             isActive && "opacity-100"
           )}
         />

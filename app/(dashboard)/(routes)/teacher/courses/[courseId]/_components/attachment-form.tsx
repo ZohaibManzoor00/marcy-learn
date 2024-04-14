@@ -18,6 +18,7 @@ interface AttachmentFormProps {
 
 const formSchema = z.object({
   url: z.string().min(1),
+  name: z.string().min(1),
 });
 
 export default function AttachmentForm({
@@ -56,8 +57,8 @@ export default function AttachmentForm({
   };
 
   return (
-    <div className="mt-6 border bg-slate-100 rounded-md p-4">
-      <div className="font-medium flex items-center justify-between">
+    <div className="mt-6 border bg-slate-100 dark:bg-slate-900 rounded-md p-4">
+      <div className="font-medium flex items-center justify-between mb-2">
         Course attachments
         <Button variant="ghost" onClick={toggleEdit}>
           {isEditing && <>Cancel</>}
@@ -87,7 +88,7 @@ export default function AttachmentForm({
                   <File className="h-4 w-4 mr-2 flex-shrink-0" />
                   <p className="text-xs line-clamp-1">{attachment.name}</p>
                   {deletingId === attachment.id ? (
-                    <div>
+                    <div className="ml-auto">
                       <Loader2 className="h-4 w-4 animate-spin" />
                     </div>
                   ) : (
@@ -105,11 +106,11 @@ export default function AttachmentForm({
         </>
       )}
       {isEditing && (
-        <div>
+        <div className="mt-5">
           <FileUpload
             endpoint="courseAttachment"
-            onChange={(url) => {
-              if (url) onSubmit({ url });
+            onChange={(url, name) => {
+              if (url && name) onSubmit({ url, name });
             }}
           />
           <div className="text-xs text-muted-foreground mt-4">

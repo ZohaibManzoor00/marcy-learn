@@ -25,7 +25,6 @@ export default async function PathwayCourses({
         <SearchInput />
       </div>
       <div className="p-6 space-y-4">
-        {/* <Categories items={categories} /> */}
         <CoursesList items={coursesInPathway} />
       </div>
     </>

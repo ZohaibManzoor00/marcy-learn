@@ -6,7 +6,7 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request, { params }: { params: { courseId: string } }) {
   try {
     const { userId } = auth();
-    const { url } = await req.json();
+    const { url, name } = await req.json();
 
     if (!userId || !isTeacher(userId)) return new NextResponse("Unauthorized", { status: 401 });
 
@@ -14,7 +14,7 @@ export async function POST(req: Request, { params }: { params: { courseId: strin
 
     if (!courseOwner) return new NextResponse("Unauthorized", { status: 401 });
 
-    const attachment = await db.attachment.create({ data: { url, name: url.split("/").pop(), courseId: params.courseId } });
+    const attachment = await db.attachment.create({ data: { url, name, courseId: params.courseId } });
 
     return NextResponse.json(attachment);
   } catch (err) {

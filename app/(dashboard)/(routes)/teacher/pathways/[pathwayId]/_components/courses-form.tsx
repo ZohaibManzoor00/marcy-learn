@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { Chapter, Course } from "@prisma/client";
+import { Chapter, Course, Pathway } from "@prisma/client";
 
 import {
   Form,
@@ -20,21 +20,21 @@ import { Button } from "@/components/ui/button";
 import { Loader2, PlusCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
-import ChaptersList from "./chapters-list";
+import CoursesList from "./courses-list";
 
-interface ChaptersFormProps {
-  initialData: Course & { chapters: Chapter[] };
-  courseId: string;
+interface CoursesFormProps {
+  initialData: Pathway & { courses: Course[] };
+  pathwayId: string;
 }
 
 const formSchema = z.object({
   title: z.string().min(1),
 });
 
-export default function ChaptersForm({
+export default function CoursesForm({
   initialData,
-  courseId,
-}: ChaptersFormProps) {
+  pathwayId,
+}: CoursesFormProps) {
   const [isCreating, setIsCreating] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
   const toggleCreating = () => setIsCreating(!isCreating);
@@ -50,11 +50,11 @@ export default function ChaptersForm({
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await axios.post(`/api/courses/${courseId}/chapters`, values);
-      toast.success("Course updated");
-      router.refresh();
+      await axios.post(`/api/courses/`, { ...values, pathwayId }); // CHANGE TO URL
+      toast.success("Course created");
       toggleCreating();
       form.reset();
+      router.refresh()
     } catch (err) {
       toast.error("Something went wrong");
     }
@@ -63,10 +63,10 @@ export default function ChaptersForm({
   const onReorder = async (updateData: { id: string; position: number }[]) => {
     try {
       setIsUpdating(true);
-      await axios.put(`/api/courses/${courseId}/chapters/reorder`, {
+      await axios.put(`/api/courses/${pathwayId}/chapters/reorder`, {
         list: updateData,
       });
-      toast.success("Chapters reordered");
+      toast.success("Courses reordered");
       router.refresh();
     } catch {
       toast.error("Something went wrong");
@@ -76,23 +76,23 @@ export default function ChaptersForm({
   };
 
   const onEdit = (id: string) =>
-    router.push(`/teacher/courses/${courseId}/chapters/${id}`);
+    router.push(`/teacher/courses/${id}`);
 
   return (
-    <div className="relative mt-6 border bg-slate-100 rounded-md p-4">
+    <div className="relative mt-6 border bg-slate-100 dark:bg-slate-900 rounded-md p-4">
       {isUpdating && (
         <div className="absolute h-full w-full bg-slate-500/20 top-0 right-0 rounded-m flex items-center justify-center">
           <Loader2 className="animate-spin h-6 w-6 text-zinc-700" />
         </div>
       )}
       <div className="font-medium flex items-center justify-between">
-        Course chapters
+        Pathway courses
         <Button variant="ghost" onClick={toggleCreating}>
           {isCreating ? (
             <>Cancel</>
           ) : (
             <>
-              <PlusCircle className="h-4 w-4 mr-2" /> Add a chapter
+              <PlusCircle className="h-4 w-4 mr-2" /> Add a course
             </>
           )}
         </Button>
@@ -111,7 +111,7 @@ export default function ChaptersForm({
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder="e.g. 'Introduction to the course'"
+                      placeholder="e.g. 'How to become more technical' "
                       {...field}
                     />
                   </FormControl>
@@ -129,20 +129,20 @@ export default function ChaptersForm({
         <div
           className={cn(
             "text-sm mt-2",
-            !initialData.chapters.length && "text-slate-500 italic"
+            !initialData.courses.length && "text-slate-500 italic"
           )}
         >
-          {!initialData.chapters.length && "No chapters"}
-          <ChaptersList
+          {!initialData.courses.length && "No courses"}
+          <CoursesList
             onEdit={onEdit}
             onReorder={onReorder}
-            items={initialData.chapters || []}
+            items={initialData.courses || []}
           />
         </div>
       )}
       {!isCreating && (
         <p className="text-xs text-muted-foreground mt-4">
-          Drag and drop to reorder chapters
+          Drag and drop to reorder courses
         </p>
       )}
     </div>

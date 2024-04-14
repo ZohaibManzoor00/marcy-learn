@@ -1,9 +1,9 @@
 import { auth } from "@clerk/nextjs";
 import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
+import { File, LayoutDashboard, ListChecks } from "lucide-react";
 
 import IconBadge from "@/components/icon-badge";
-import { File, LayoutDashboard, ListChecks } from "lucide-react";
 import TitleForm from "./_components/title-form";
 import DescriptionForm from "./_components/description-form";
 import ImageForm from "./_components/image-form";
@@ -14,11 +14,7 @@ import Banner from "@/components/banner";
 import Actions from "./_components/actions";
 import PathwayForm from "./_components/pathway-form";
 
-export default async function CourseIdPage({
-  params,
-}: {
-  params: { courseId: string };
-}) {
+export default async function CourseIdPage({ params }: { params: { courseId: string } }) {
   const { userId } = auth();
   if (!userId) return redirect("/");
 
@@ -30,10 +26,11 @@ export default async function CourseIdPage({
     },
   });
 
+  if (!course) return redirect("/");
+
   const categories = await db.category.findMany({ orderBy: { name: "asc" } });
   const pathways = await db.pathway.findMany({ orderBy: { title: "asc" } });
-
-  if (!course) return redirect("/");
+  
 
   const requiredFields = [
     course.title,
@@ -62,7 +59,7 @@ export default async function CourseIdPage({
         <div className="flex items-center justify-between">
           <div className="flex flex-col gap-y-2">
             <h1 className="text-2xl font-medium">Course setup</h1>
-            <span className="text-sm text-slate-700">
+            <span className="text-sm text-slate-700 dark:text-slate-400">
               Complete all fields {completionText}
             </span>
           </div>
@@ -75,7 +72,7 @@ export default async function CourseIdPage({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
           <div>
             <div className="flex items-center gap-x-2">
-              <IconBadge icon={LayoutDashboard} variant={"default"} />
+              <IconBadge icon={LayoutDashboard} variant={"primary"} />
               <h2 className="text-xl">Customize your course</h2>
             </div>
             <TitleForm initialData={course} courseId={course.id} />
@@ -85,19 +82,18 @@ export default async function CourseIdPage({
           <div className="space-y-6">
             <div>
               <div className="flex items-center gap-x-2">
-                <IconBadge variant={"default"} icon={ListChecks} />
+                <IconBadge variant={"primary"} icon={ListChecks} />
                 <h2 className="text-xl">Course Chapters</h2>
               </div>
               <ChaptersForm initialData={course} courseId={course.id} />
             </div>
             <div>
               <div className="flex items-center gap-x-2">
-                <IconBadge variant={"default"} icon={File} />
+                <IconBadge variant={"primary"} icon={File} />
                 <h2 className="text-xl">Resources & Attachments</h2>
               </div>
               <AttachmentForm initialData={course} courseId={course.id} />
             </div>
-            <div>
               <PathwayForm
                 initialData={course}
                 courseId={course.id}
@@ -106,7 +102,6 @@ export default async function CourseIdPage({
                   value: pathway.id,
                 }))}
               />
-            </div>
             <CategoryForm
               initialData={course}
               courseId={course.id}

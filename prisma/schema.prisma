@@ -20,11 +20,6 @@ model Pathway {
   updatedAt DateTime @updatedAt
 
   courses    Course[]
-  
-  categoryId String?
-  category   Category? @relation(fields: [categoryId], references: [id],  onDelete: Cascade)
-
-  @@index([categoryId])
 }
 
 model Course {
@@ -34,6 +29,7 @@ model Course {
   description String? @db.Text
   imageUrl    String? @db.Text
   isPublished Boolean @default(false)
+  position    Int
 
   categoryId String?
   category   Category? @relation(fields: [categoryId], references: [id],  onDelete: Cascade)
@@ -55,7 +51,6 @@ model Category {
   id       String    @id @default(uuid())
   name     String    @unique
   courses  Course[]
-  pathways Pathway[]
 }
 
 model Attachment {

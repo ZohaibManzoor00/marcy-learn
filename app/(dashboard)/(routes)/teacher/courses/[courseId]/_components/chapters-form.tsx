@@ -51,7 +51,7 @@ export default function ChaptersForm({
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.post(`/api/courses/${courseId}/chapters`, values);
-      toast.success("Course updated");
+      toast.success("Chapter created");
       router.refresh();
       toggleCreating();
       form.reset();
@@ -78,7 +78,7 @@ export default function ChaptersForm({
   const onEdit = (id: string) => router.push(`/teacher/courses/${courseId}/chapters/${id}`);
 
   return (
-    <div className="relative mt-6 border bg-slate-100 rounded-md p-4">
+    <div className="relative mt-6 border bg-slate-100 dark:bg-slate-900 rounded-md p-4">
       {isUpdating && (
         <div className="absolute h-full w-full bg-slate-500/20 top-0 right-0 rounded-m flex items-center justify-center">
           <Loader2 className="animate-spin h-6 w-6 text-zinc-700" />

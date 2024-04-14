@@ -9,9 +9,10 @@ import DescriptionForm from "./_components/description-form";
 import ImageForm from "./_components/image-form";
 import CategoryForm from "./_components/category-form";
 import AttachmentForm from "./_components/attachment-form";
-import ChaptersForm from "./_components/chapters-form";
+import ChaptersForm from "./_components/courses-form";
 import Banner from "@/components/banner";
 import Actions from "./_components/actions";
+import CoursesForm from "./_components/courses-form";
 
 export default async function PathwayIdPage({
   params,
@@ -25,8 +26,6 @@ export default async function PathwayIdPage({
     where: { id: params.pathwayId },
   });
 
-  const categories = await db.category.findMany();
-
   if (!pathway) return redirect("/");
 
   const requiredFields = [pathway.title, pathway.description, pathway.imageUrl];
@@ -37,16 +36,28 @@ export default async function PathwayIdPage({
 
   const isComplete = requiredFields.every(Boolean);
 
+  const courses = await db.pathway.findUnique({
+    where: { id: params.pathwayId },
+    include: {
+      courses: { orderBy: { createdAt: "asc" } },
+    },
+  });
+
+  if (!courses) return redirect("/");
+
   return (
     <>
       {!pathway.isPublished && (
-        <Banner label="This pathway is unpublished. It will not be visible to viewers." dark={"black"} />
+        <Banner
+          label="This pathway is unpublished. It will not be visible to others."
+          dark={"black"}
+        />
       )}
       <div className="p-6">
         <div className="flex items-center justify-between">
           <div className="flex flex-col gap-y-2">
             <h1 className="text-2xl font-medium">Pathway setup</h1>
-            <span className="text-sm text-slate-700">
+            <span className="text-sm text-slate-700 dark:text-slate-400">
               Complete all fields {completionText}
             </span>
           </div>
@@ -59,36 +70,19 @@ export default async function PathwayIdPage({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
           <div>
             <div className="flex items-center gap-x-2">
-              <IconBadge icon={LayoutDashboard} variant={"default"} />
+              <IconBadge icon={LayoutDashboard} variant={"primary"} />
               <h2 className="text-xl">Customize your pathway</h2>
             </div>
             <TitleForm initialData={pathway} pathwayId={pathway.id} />
             <DescriptionForm initialData={pathway} pathwayId={pathway.id} />
             <ImageForm initialData={pathway} pathwayId={pathway.id} />
-            {/* <CategoryForm
-              initialData={course}
-              courseId={course.id}
-              options={categories.map((category) => ({
-                label: category.name,
-                value: category.id,
-              }))}
-            /> */}
           </div>
           <div className="space-y-6">
-            {/* <div className="">
-              <div className="flex items-center gap-x-2">
-                <IconBadge variant={"default"} icon={ListChecks} />
-                <h2 className="text-xl">Course Chapters</h2>
-              </div>
-              <ChaptersForm initialData={course} courseId={course.id} />
+            <div className="flex items-center gap-x-2">
+              <IconBadge variant={"primary"} icon={ListChecks} />
+              <h2 className="text-xl">Pathway Courses</h2>
             </div>
-            <div>
-              <div className="flex items-center gap-x-2">
-                <IconBadge variant={"default"} icon={File} />
-                <h2 className="text-xl">Resources & Attachments</h2>
-              </div>
-              <AttachmentForm initialData={pathway} courseId={pathway.id} />
-            </div> */}
+            <CoursesForm initialData={courses} pathwayId={pathway.id} />
           </div>
         </div>
       </div>

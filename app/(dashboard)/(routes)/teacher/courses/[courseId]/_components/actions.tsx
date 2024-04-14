@@ -34,7 +34,6 @@ export default function Actions({
       } else {
         await axios.patch(`/api/courses/${courseId}/publish`);
         toast.success("Course published");
-        confetti.onOpen();
       }
       router.refresh();
     } catch {
@@ -69,7 +68,7 @@ export default function Actions({
         {isPublished ? "Unpublish" : "Publish"}
       </Button>
       <ConfirmModal onConfirm={onDelete}>
-        <Button size="sm" disabled={isLoading}>
+        <Button size="sm" disabled={isLoading} className="dark:bg-slate-200">
           <Trash className="h-4 w-4" />
         </Button>
       </ConfirmModal>

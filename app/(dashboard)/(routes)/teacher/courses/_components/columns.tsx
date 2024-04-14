@@ -5,7 +5,7 @@ import { Course } from "@prisma/client";
 
 import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
-import { ArrowUpDown, MoreHorizontal, Pencil } from "lucide-react";
+import { ArrowUpDown, MoreHorizontal, Pencil, Trash } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -46,7 +46,12 @@ export const columns: ColumnDef<Course>[] = [
     cell: ({ row }) => {
       const isPublished = row.getValue("isPublished") || false;
       return (
-        <Badge className={cn("bg-slate-500", isPublished && "bg-sky-700")}>
+        <Badge
+          className={cn(
+            "bg-slate-500 dark:text-gray-100 hover:bg-sky-600",
+            isPublished && "bg-sky-700"
+          )}
+        >
           {isPublished ? "Published" : "Draft"}
         </Badge>
       );

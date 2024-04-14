@@ -55,9 +55,9 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      <div className="flex items-center py-4 justify-between">
+      <div className="flex items-center gap-2 py-4 justify-between">
         <Input
-          placeholder="Filter courses..."
+          placeholder="Filter pathways..."
           value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("title")?.setFilterValue(event.target.value)
@@ -66,7 +66,7 @@ export function DataTable<TData, TValue>({
         />
         <div className="flex gap-2">
           <Link href="/teacher/createPathway">
-            <Button>
+            <Button className="dark:bg-slate-800 dark:text-gray-100 dark:hover:bg-slate-700">
               <PlusCircle className="h-4 w-4 mr-2" />
               New pathway
             </Button>

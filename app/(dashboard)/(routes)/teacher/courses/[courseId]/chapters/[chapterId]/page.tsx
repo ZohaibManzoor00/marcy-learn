@@ -63,7 +63,7 @@ export default async function ChapterIdPage({ params }: { params: { courseId: st
             <div className="flex items-center justify-between w-full">
               <div className="flex flex-col gap-y-2">
                 <h1 className="text-2xl font-medium">Chapter Creation</h1>
-                <span className="text-sm text-slate-700">
+                <span className="text-sm text-slate-700 dark:text-slate-400">
                   Complete all fields {completionText}
                 </span>
               </div>
@@ -80,7 +80,7 @@ export default async function ChapterIdPage({ params }: { params: { courseId: st
           <div className="space-y-4">
             <div>
               <div className="flex items-center gap-x-2">
-                <IconBadge icon={LayoutDashboard} />
+                <IconBadge icon={LayoutDashboard} variant={"primary"} />
                 <h2 className="text-xl">Customize your chapter</h2>
               </div>
               <ChapterTitleForm
@@ -96,7 +96,7 @@ export default async function ChapterIdPage({ params }: { params: { courseId: st
             </div>
             <div>
               <div className="flex items-center gap-x-2">
-                <IconBadge icon={Eye} />
+                <IconBadge icon={Eye} variant={"primary"} />
                 <h2 className="text-xl">Access Settings</h2>
               </div>
               <ChapterAccessForm
@@ -108,7 +108,7 @@ export default async function ChapterIdPage({ params }: { params: { courseId: st
           </div>
           <div>
             <div className="flex items-center gap-x-2">
-              <IconBadge icon={Video} />
+              <IconBadge icon={Video} variant={"primary"} />
               <h2 className="text-xl">Add a video</h2>
             </div>
             <ChapterVideoForm

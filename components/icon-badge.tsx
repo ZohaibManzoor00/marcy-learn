@@ -46,12 +46,14 @@ type IconVariantsProps = VariantProps<typeof iconVariants>;
 
 interface IconBadgeProps extends BackgroundVariantsProps, IconVariantsProps {
   icon: LucideIcon;
+  dark?: boolean; 
 }
 
 export default function IconBadge({
   icon: Icon,
   variant,
   size,
+  dark
 }: IconBadgeProps) {
   return (
     <div className={cn(backgroundVariants({ variant, size }))}>

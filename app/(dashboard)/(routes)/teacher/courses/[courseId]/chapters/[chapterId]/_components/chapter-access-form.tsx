@@ -63,7 +63,7 @@ export default function ChapterAccessForm({
   };
 
   return (
-    <div className="mt-6 border bg-slate-100 rounded-md p-4">
+    <div className="mt-6 border bg-slate-100 dark:bg-slate-900 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
         Chapter access
         <Button variant="ghost" onClick={toggleEdit}>
