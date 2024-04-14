@@ -18,7 +18,7 @@ export default async function Pathways({ searchParams }: SearchProps) {
 
   return (
     <>
-      About us 
+      Quick Setup
     </>
   );
 }

@@ -1,7 +1,14 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { Layout, Compass, BarChart, Rocket, Users, BookText } from "lucide-react";
+import {
+  Layout,
+  BarChart,
+  Rocket,
+  Users,
+  BookText,
+  Sparkles,
+} from "lucide-react";
 
 import SidebarItem from "./sidebar-items";
 
@@ -17,9 +24,9 @@ const guestRoutes = [
     href: "/pathways",
   },
   {
-    icon: Users,
-    label: "About",
-    href: "/about",
+    icon: Sparkles,
+    label: "Quick Start",
+    href: "/quick_start",
   },
 ];
 
