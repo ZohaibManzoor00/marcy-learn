@@ -23,12 +23,11 @@ export default function PathwayCourseCard({
   description,
   courseLength,
   progress,
-}: 
-// category,
+}: // category,
 PathwayCourseCardProps) {
   return (
     <Link href={`/pathways/${id}/courses`}>
-      <div className="group hover:shadow-sm transition overflow-hidden border rounded-lg p-3 h-full">
+      <div className="group hover:shadow-sm hover:bg-slate-200/20 dark:hover:bg-slate-800/25 transition overflow-hidden border rounded-lg p-3 h-full">
         <div className="relative w-full aspect-video rounded-md overflow-hidden">
           <Image fill className="object-cover" alt={title} src={imageUrl} />
         </div>
@@ -40,7 +39,7 @@ PathwayCourseCardProps) {
           <div className="my-3 flex items-center gap-x-2 text-sm md:text-xs">
             <div className="flex items-center gap-x-1 text-slate-500">
               <IconBadge size="sm" icon={BookOpen} variant={"primary"} />
-              <span>
+              <span className="dark:text-slate-400">
                 {courseLength} {courseLength === 1 ? "Course" : "Courses"}
               </span>
             </div>

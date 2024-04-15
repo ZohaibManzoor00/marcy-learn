@@ -18,7 +18,6 @@ export async function getProgressByPathway({ userId, searchParams }: GetProgress
       where: {
          isPublished: true, 
          title: { contains: searchParams?.title } ,
-        //  categoryId: { contains: searchParams?.categoryId || }, 
       },
       orderBy: { createdAt: "desc" },
     })) as PathwayProps[];
