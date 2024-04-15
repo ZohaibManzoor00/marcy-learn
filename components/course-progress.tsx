@@ -10,7 +10,7 @@ interface CourseProgressProps {
 const colorByVariant = {
   default: "text-zinc-700",
   success: "text-emerald-700 dark:text-emerald-500",
-  primary: 'text-sky-700'
+  primary: 'text-sky-700 dark:text-sky-500'
 };
 
 const sizeByVariant = {

@@ -27,7 +27,7 @@ export default function CourseCard({
 }: CourseCardProps) {
   return (
     <Link href={`/courses/${id}`}>
-      <div className="group hover:shadow-sm transition overflow-hidden border rounded-lg p-3 h-full">
+      <div className="group hover:shadow-sm hover:bg-slate-200/20 dark:hover:bg-slate-800/25 transition overflow-hidden border rounded-lg p-3 h-full">
         <div className="relative w-full aspect-video rounded-md overflow-hidden">
           <Image fill className="object-cover" alt={title} src={imageUrl} />
         </div>
@@ -39,7 +39,7 @@ export default function CourseCard({
           {/* <p className="text-xs text-muted-foreground">{description}</p> */}
           <div className="my-3 flex items-center gap-x-2 text-sm md:text-xs">
             <div className="flex items-center gap-x-1 text-slate-500">
-              <IconBadge size="sm" icon={BookOpen} variant={"primary"}/>
+              <IconBadge size="sm" icon={BookOpen} variant={"primary"} />
               <span>
                 {chaptersLength} {chaptersLength === 1 ? "Chapter" : "Chapters"}
               </span>
