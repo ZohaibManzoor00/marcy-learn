@@ -30,6 +30,7 @@
     "@radix-ui/react-switch": "^1.0.3",
     "@tanstack/react-table": "^8.13.2",
     "@uploadthing/react": "^6.3.4",
+    "@vercel/speed-insights": "^1.0.10",
     "add": "^2.0.6",
     "axios": "^1.6.7",
     "class-variance-authority": "^0.7.0",
