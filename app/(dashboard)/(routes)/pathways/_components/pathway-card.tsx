@@ -13,7 +13,6 @@ interface PathwayCourseCardProps {
   description: string | null;
   courseLength: number;
   progress: number | null;
-  // category: string;
 }
 
 export default function PathwayCourseCard({
@@ -23,11 +22,11 @@ export default function PathwayCourseCard({
   description,
   courseLength,
   progress,
-}: // category,
+}: 
 PathwayCourseCardProps) {
   return (
     <Link href={`/pathways/${id}/courses`}>
-      <div className="group hover:shadow-sm hover:bg-slate-200/20 dark:hover:bg-slate-800/25 transition overflow-hidden border rounded-lg p-3 h-full">
+      <div className="group hover:shadow-sm hover:bg-gray-300/10 dark:hover:bg-slate-800/25 transition overflow-hidden border rounded-lg p-3 h-full">
         <div className="relative w-full aspect-video rounded-md overflow-hidden">
           <Image fill className="object-cover" alt={title} src={imageUrl} />
         </div>

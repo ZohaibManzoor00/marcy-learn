@@ -5,7 +5,6 @@ import Header from "./_components/header";
 import Stepped from "./_components/stepped";
 import Stats from "./_components/stats";
 import { Timeline } from "./_components/timeline";
-import { CarouselGroup } from "../pathways/_components/carousel";
 
 export default async function Pathways() {
   const { userId } = auth();
@@ -29,9 +28,7 @@ export default async function Pathways() {
         totalCoursesCompleted={totalCoursesCompleted || 0}
       />
 
-      <div className="pb-20 flex justify-center px-20">
-        <CarouselGroup />
-      </div>
+     
     </>
   );
 }
