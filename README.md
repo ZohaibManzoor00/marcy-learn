@@ -3,7 +3,7 @@
 A full-stack web application making company-wide learning management and onboarding easier via internal courses, learning pathways, and an admin dashboard. [Live Link](https://bit.ly/marcy-learn)
 <br/><br/>
 
-<img src="./public/marcy-learn.jpg" alt="marcy-logo" width="300"><br/>
+<img src="./public/marcy-learn.jpg" alt="marcy-learn" width="300"><br/>
 
 ### Functionality
 
@@ -45,7 +45,7 @@ Marcy Learn allows a user to
 <img src="genius_screenshots/upgrade-pro.gif" alt="upgrade pro" width="600"><br/>
 
 ### System Design
-<img src="genius_screenshots/genius-system.png" alt="genius system design"><br/>
+<img src="genius_screenshots/genius-system.png" alt="marcy learn system design"><br/>
 
 ### Technologies Used
 - TypeScript
