@@ -28,6 +28,8 @@ export const getPathwayCourses = async ({
       orderBy: { position: "asc" },
     });
 
+    if (!courses) return []
+
     const coursesWithProgress: CourseWithProgress[] = await Promise.all(
       courses.map(async (course) => {
         const progressPercentage = await getProgress(userId, course.id);
