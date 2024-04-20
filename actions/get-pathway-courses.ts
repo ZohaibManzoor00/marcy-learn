@@ -25,7 +25,7 @@ export const getPathwayCourses = async ({
     const courses = await db.course.findMany({
       where: { isPublished: true, title: { contains: title }, categoryId, pathwayId },
       include: { category: true, chapters: { where: { isPublished: true }, select: { id: true } } },
-      orderBy: { createdAt: "desc" },
+      orderBy: { position: "asc" },
     });
 
     const coursesWithProgress: CourseWithProgress[] = await Promise.all(

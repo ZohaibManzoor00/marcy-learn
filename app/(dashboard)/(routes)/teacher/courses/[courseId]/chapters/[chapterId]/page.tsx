@@ -97,6 +97,11 @@ export default async function ChapterIdPage({
                 courseId={params.courseId}
                 chapterId={params.chapterId}
               />
+              <ChapterAccessForm
+                initialData={chapter}
+                courseId={params.courseId}
+                chapterId={params.chapterId}
+              />
             </div>
           </div>
           <div>
@@ -114,11 +119,6 @@ export default async function ChapterIdPage({
                 <IconBadge icon={Eye} variant={"primary"} />
                 <h2 className="text-xl">Access Settings</h2>
               </div>
-              <ChapterAccessForm
-                initialData={chapter}
-                courseId={params.courseId}
-                chapterId={params.chapterId}
-              />
             </div>
           </div>
         </div>
