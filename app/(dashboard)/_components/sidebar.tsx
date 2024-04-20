@@ -20,7 +20,7 @@ const socials = [
   },
   {
     icon: RxNotionLogo,
-    href: "https://www.notion.so/marcylabschool/Getting-Started-c1233ac3efb548a596016bb160d8d684/",
+    href: "https://www.notion.so/marcylabschool/Getting-Started/",
     label: "Notion",
   },
   {
