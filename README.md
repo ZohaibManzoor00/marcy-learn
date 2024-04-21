@@ -13,6 +13,17 @@ Marcy Learn allows a user to
 - Student Dashboard 
 - Teacher Mode
 
+### Demo 
+
+#### Learning Pathways
+<img src="./public/pathways.png" alt="pathways" width="300"><br/>
+
+#### Learner Dashboard 
+<img src="./public/dashboard.png" alt="dashboard" width="300"><br/>
+
+#### Course Chapter
+<img src="./public/chapter.png" alt="chapter" width="300"><br/>
+
 ### Technologies Used
 - TypeScript
 - React
