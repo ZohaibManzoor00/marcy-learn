@@ -1,9 +1,16 @@
 'use client'
 
-import { useTheme } from "next-themes";
+import { useEffect, useState } from 'react';
 import Image from "next/image";
+import { useTheme } from "next-themes";
 
 export default function Logo() {
-  const { theme } = useTheme()
-  return <Image height={20} width={20} alt="logo" src={theme === 'light' ? "/marcy-logo.png" : "/marcy-logo-dark.png"} />;
+  const { resolvedTheme } = useTheme();
+  const [logoSrc, setLogoSrc] = useState('/marcy-logo.png'); 
+
+  useEffect(() => {
+    setLogoSrc(resolvedTheme === 'dark' ? '/marcy-logo-dark.png' : '/marcy-logo.png');
+  }, [resolvedTheme]);
+
+  return <Image height={20} width={20} alt="logo" src={logoSrc} />;
 }

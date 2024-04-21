@@ -19,7 +19,7 @@ export default function InfoCard({
       <IconBadge variant={variant} icon={Icon} />
       <div className="">
         <p className="font-medium">{label}</p>
-        <p className="text-gray-500 text-sm">
+        <p className="text-gray-500 text-sm text-muted-foreground">
           {numberOfItems} {numberOfItems === 1 ? "Course" : "Courses"}
         </p>
       </div>

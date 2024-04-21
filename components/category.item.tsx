@@ -40,14 +40,15 @@ export default function CategoryItem({
     <button
       onClick={onClick}
       className={cn(
-        "py-2 px-3 text-sm border border-slate-200 rounded-full flex items-center gap-x-1 hover:border-zinc-700 dark:hover:bg-slate-900 dark:hover:border-slate-500  transition",
-        isSelected &&
-          "border-zinc-700 dark:hover:bg-background-slate-800 bg-zinc-200/20 text-zinc-800 dark:text-gray-100 dark:border-slate-500 dark:bg-slate-800"
+        "py-2 px-3 text-sm border border-slate-200 rounded-md flex items-center gap-x-1 hover:bg-sky-200/20 dark:border-slate-800 transition",
+        isSelected && "bg-sky-200/20 border-slate-300"
       )}
       typeof="button"
     >
       {Icon && <Icon size={20} />}
-      <div className="truncate">{label}</div>
+      <p className={cn("font-semibold text-xs", isSelected && "text-sky-800 dark:text-sky-200")}>
+        {label}
+      </p>
     </button>
   );
 }

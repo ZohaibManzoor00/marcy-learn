@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import { Category } from "@prisma/client";
 

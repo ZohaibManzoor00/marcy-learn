@@ -48,7 +48,7 @@ export default function CourseSidebarItem({
           className={cn(
             "text-slate-500 dark:text-slate-400",
             isActive &&
-              `text-slate-700 dark:text-slate-300 ${isCompleted && "dark:text-emerald-300"}`,
+              `text-slate-700 dark:text-slate-200 ${isCompleted && "dark:text-emerald-300"}`,
             isCompleted && "text-emerald-700 dark:text-emerald-500",
             isActive && isCompleted && "dark:text-emerald-300"
           )}
