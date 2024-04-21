@@ -16,13 +16,13 @@ Marcy Learn allows a user to
 ### Demo 
 
 #### Learning Pathways
-<img src="./public/pathways.png" alt="pathways" width="300"><br/>
+<img src="./public/pathways.png" alt="pathways" width="700"><br/>
 
 #### Learner Dashboard 
-<img src="./public/dashboard.png" alt="dashboard" width="300"><br/>
+<img src="./public/dashboard.png" alt="dashboard" width="700"><br/>
 
 #### Course Chapter
-<img src="./public/chapter.png" alt="chapter" width="300"><br/>
+<img src="./public/chapter.png" alt="chapter" width="700"><br/>
 
 ### Technologies Used
 - TypeScript
