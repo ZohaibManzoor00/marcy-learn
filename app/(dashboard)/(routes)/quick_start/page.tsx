@@ -6,6 +6,7 @@ import Stepped from "./_components/stepped";
 import Stats from "./_components/stats";
 import { Timeline } from "./_components/timeline";
 import { CarouselGroup } from "../pathways/_components/carousel";
+import { RoleTabs } from "./_components/tabs";
 
 export default async function Pathways() {
   const { userId } = auth();
@@ -22,7 +23,10 @@ export default async function Pathways() {
 
   return (
     <>
-      <Stats
+      <div className="p-2">
+        <RoleTabs />
+      </div>
+      {/* <Stats
         totalUsers={totalUsers}
         totalCourses={totalCourses}
         totalCoursesIP={totalCoursesIP}
@@ -31,7 +35,7 @@ export default async function Pathways() {
 
       <div className="pb-20 flex justify-center px-20">
         <CarouselGroup />
-      </div>
+      </div> */}
     </>
   );
 }

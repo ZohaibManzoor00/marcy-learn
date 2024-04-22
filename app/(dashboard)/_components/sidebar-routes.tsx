@@ -8,6 +8,7 @@ import {
   Users,
   BookText,
   Sparkles,
+  Shapes,
 } from "lucide-react";
 
 import SidebarItem from "./sidebar-items";
@@ -19,12 +20,12 @@ const guestRoutes = [
     href: "/",
   },
   {
-    icon: Rocket,
+    icon: Shapes,
     label: "Pathways",
     href: "/pathways",
   },
   {
-    icon: Sparkles,
+    icon: Rocket,
     label: "Quick Start",
     href: "/quick_start",
   },

@@ -97,6 +97,12 @@ export default async function ChapterIdPage({
                 courseId={params.courseId}
                 chapterId={params.chapterId}
               />
+              <div className="mt-5">
+                <div className="flex items-center gap-x-2">
+                  <IconBadge icon={Eye} variant={"primary"} />
+                  <h2 className="text-xl">Access Settings</h2>
+                </div>
+              </div>
               <ChapterAccessForm
                 initialData={chapter}
                 courseId={params.courseId}
@@ -114,12 +120,6 @@ export default async function ChapterIdPage({
               chapterId={params.chapterId}
               courseId={params.courseId}
             />
-            <div className="mt-5">
-              <div className="flex items-center gap-x-2">
-                <IconBadge icon={Eye} variant={"primary"} />
-                <h2 className="text-xl">Access Settings</h2>
-              </div>
-            </div>
           </div>
         </div>
       </div>
