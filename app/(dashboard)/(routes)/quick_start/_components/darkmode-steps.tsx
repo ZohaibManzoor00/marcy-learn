@@ -8,41 +8,39 @@ import {
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const learnerSteps = [
+const generalInfo = [
   {
-    title: "Search for a Pathway",
-    description: "Choose a pathway covered at Marcy or request one to be made!",
+    title: "Dashboard",
+    description: "Track your progress and come back to a course in no time.",
   },
   {
-    title: "Check out a Course",
-    description:
-      "Browse for a course! Courses are ordered therefore its highly suggested you complete them in the intended order.",
-  },
-  {
-    title: "Begin the course",
-    description:
-      "With a progress tracker and an HD video player, unlock the possibilities of your growth.",
+    title: "Dark Mode",
+    description: "Change the theme to your preference!",
   },
 ];
 
+export default function DarkModeSteps() {
+  return <div>DarkModeSteps</div>;
+}
+
 export function RoleTabs() {
   return (
-    <Tabs defaultValue="learner">
+    <Tabs defaultValue="dark-mode">
       <TabsList>
-        <TabsTrigger value="learner">Learner</TabsTrigger>
-        <TabsTrigger value="teacher">Teacher</TabsTrigger>
+        <TabsTrigger value="dark-mode">Dark Mode</TabsTrigger>
+        <TabsTrigger value="light-mode">Light Mode</TabsTrigger>
       </TabsList>
-      <TabsContent value="learner">
+      <TabsContent value="dark-mode">
         <div className="flex">
           <Card className="w-2/6">
             <CardHeader>
-              <CardTitle>Navigate as a Learner</CardTitle>
+              <CardTitle>Navigate as a Dark Mode</CardTitle>
               <CardDescription>
                 Navigate pathways, courses, and chapters
               </CardDescription>
             </CardHeader>
             <CardContent>
-              {learnerSteps.map((step, idx) => (
+              {generalInfo.map((step, idx) => (
                 <div className="mb-4">
                   <h1 className="font-semibold">
                     {idx + 1}. {step.title}
@@ -61,7 +59,7 @@ export function RoleTabs() {
           />
         </div>
       </TabsContent>
-      <TabsContent value="teacher">
+      <TabsContent value="light-mode">
         <Card className="w-1/2">
           <CardHeader>
             <CardTitle>Create Courses</CardTitle>
