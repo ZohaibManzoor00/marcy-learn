@@ -34,6 +34,8 @@ export default async function ChapterIdPage({
 
   const progress  = await getProgress(userId, course.id)
 
+  console.log(typeof chapter.description!, chapter.description!)
+
   return (
     <div>
       {" "}
@@ -81,7 +83,7 @@ export default async function ChapterIdPage({
           {!isLocked && (
             <>
               <div>
-                <Preview value={chapter.description!} />
+                <Preview value={String(chapter.description)} />
               </div>
               <Separator />
               {!!attachments.length && (
