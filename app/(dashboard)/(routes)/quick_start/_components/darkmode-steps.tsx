@@ -41,7 +41,7 @@ export function RoleTabs() {
             </CardHeader>
             <CardContent>
               {generalInfo.map((step, idx) => (
-                <div className="mb-4">
+                <div className="mb-4" key={idx}>
                   <h1 className="font-semibold">
                     {idx + 1}. {step.title}
                   </h1>

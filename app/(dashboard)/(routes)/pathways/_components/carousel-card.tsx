@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Course } from "@prisma/client";
+import Image from "next/image";
 
 export default function CarouselCard({ id, title, description, imageUrl, createdAt }: Course) {
   return (
@@ -8,7 +9,7 @@ export default function CarouselCard({ id, title, description, imageUrl, created
     <article
       className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80"
     >
-      <img
+      <Image
         src={imageUrl || ""}
         alt=""
         className="absolute inset-0 -z-10 h-full w-full object-cover"
@@ -28,7 +29,7 @@ export default function CarouselCard({ id, title, description, imageUrl, created
             <circle cx={1} cy={1} r={1} />
           </svg>
           <div className="flex gap-x-2.5">
-            <img
+            <Image
               src={imageUrl || ""}
               alt=""
               className="h-6 w-6 flex-none rounded-full bg-white/10"
