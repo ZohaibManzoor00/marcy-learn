@@ -60,7 +60,7 @@ export default async function Pathways() {
                 <Tabs className="flex justify-center">
                   <TabsList className="mt-3">
                     {pages.map((page) => (
-                      <TabsTrigger value={page.name.toLowerCase()}>
+                      <TabsTrigger key={page.name} value={page.name.toLowerCase()}>
                         {page.name}
                       </TabsTrigger>
                     ))}
