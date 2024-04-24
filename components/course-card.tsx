@@ -35,7 +35,9 @@ export default function CourseCard({
           <div className="text-lg md:text-base font-medium group-hover:text-sky-800 dark:group-hover:text-sky-200 transition line-clamp-2">
             {title}
           </div>
-          <p className="text-xs text-muted-foreground">{description}</p>
+          <p className="text-xs text-muted-foreground line-clamp-1">
+            {description}
+          </p>
           {/* <p className="text-xs text-muted-foreground">{description}</p> */}
           <div className="my-3 flex items-center gap-x-2 text-sm md:text-xs">
             <div className="flex items-center gap-x-1 text-slate-500">
