@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { Progress } from "./ui/progress";
+import { ProgressBar } from "./progress-bar";
 
 interface CourseProgressProps {
   value: number;
@@ -25,7 +26,8 @@ export default function CourseProgress({
 }: CourseProgressProps) {
   return (
     <div>
-      <Progress className="h-2" value={value} variant={variant} />
+      {/* <Progress className="h-2" value={value} variant={variant} /> */}
+      <ProgressBar value={value} variant={variant}/>
       <p
         className={cn(
           "font-medium text-zinc-700",

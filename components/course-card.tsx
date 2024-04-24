@@ -47,11 +47,17 @@ export default function CourseCard({
               </span>
             </div>
           </div>
-          <CourseProgress
-            variant={progress === 100 ? "success" : "primary"}
-            size="sm"
-            value={progress || 0}
-          />
+          {progress && progress > 0 ? (
+            <CourseProgress
+              variant={progress === 100 ? "success" : "primary"}
+              size="sm"
+              value={progress || 0}
+            />
+          ) : (
+            <p className="text-xs text-muted-foreground line-clamp-1">
+              Enroll Today
+            </p>
+          )}
         </div>
       </div>
     </Link>
