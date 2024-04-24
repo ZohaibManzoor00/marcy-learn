@@ -34,8 +34,6 @@ export default async function ChapterIdPage({
 
   const progress  = await getProgress(userId, course.id)
 
-  console.log(typeof chapter.description!, chapter.description!)
-
   return (
     <div>
       {" "}

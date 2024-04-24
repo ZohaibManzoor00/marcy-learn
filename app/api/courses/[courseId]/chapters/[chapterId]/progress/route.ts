@@ -18,7 +18,7 @@ export async function PUT(
       update: { isCompleted },
       create: { userId, chapterId: params.chapterId, isCompleted },
     });
-    
+
     const progress = await getProgress(userId, params.courseId);
     return NextResponse.json(progress);
   } catch (err) {

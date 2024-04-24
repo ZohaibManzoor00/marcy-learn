@@ -38,6 +38,7 @@ export default async function Pathways() {
   //   totalCoursesIP,
   //   totalCoursesCompleted,
   // } = await getAppStats();
+  // console.log({totalCoursesCompleted, totalCoursesIP})
 
   return (
     <>
