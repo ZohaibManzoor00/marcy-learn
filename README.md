@@ -1,6 +1,6 @@
 # Marcy Learn
 
-A full-stack web application making company-wide learning management and onboarding easier via internal courses, learning pathways, and an admin dashboard. Tech Stack - TypeScript, React, Next.js, Prisma, and PostgreSQL. [Live Link](https://bit.ly/marcy-learn)
+A full-stack web application making company-wide learning management and onboarding easier via internal courses, learning pathways, and an admin dashboard. Tech Stack - TypeScript, React, Next.js, Prisma, and PostgreSQL. [Live Link](https://mary-learn.vercel.app/)
 <br/><br/>
 
 <img src="./public/marcy-learn.jpg" alt="marcy-learn" width="300"><br/>
