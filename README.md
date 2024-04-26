@@ -4,7 +4,7 @@
 
 #### Welcome to **Marcy Learn**, a full-stack web application making company-wide learning management and onboarding easier via internal courses, learning pathways, and an admin dashboard. 
 #### Tech Stack - TypeScript, React, Next.js, Prisma, and PostgreSQL
-> 🔗 [Explore Marcy Learn Live!](https://mary-learn.vercel.app/)
+> 🔗 [Check out Marcy Learn Live!](https://mary-learn.vercel.app/)
 
 ## 🚀 Key Features
 - 📚 **Browse & Filter** courses and pathways
