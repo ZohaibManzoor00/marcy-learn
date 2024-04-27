@@ -5,7 +5,10 @@ import { getDashboardCourses } from "@/actions/get-dashboard-courses";
 import { CoursesList } from "@/components/courses-list";
 import { CheckCircle, Clock } from "lucide-react";
 import InfoCard from "./_components/info-card";
+
 import Categories from "@/components/categories";
+import AnimatedIcon from "@/components/animated-icon";
+
 import { db } from "@/lib/db";
 
 export default async function Dashboard({ searchParams }: { searchParams: { title: string, categoryId: string }, }) {
@@ -31,6 +34,8 @@ export default async function Dashboard({ searchParams }: { searchParams: { titl
           variant="success"
         />
       </div>
+      {/* <AnimatedIcon /> */}
+      {/* <a href="https://lordicon.com/">Icons by Lordicon.com</a> */}
       <Categories items={categories} />
       <CoursesList items={[...coursesInProgress, ...completedCourses]} />
     </div>
