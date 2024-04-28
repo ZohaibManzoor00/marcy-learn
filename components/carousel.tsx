@@ -8,7 +8,6 @@ import {
 import { Card, CardContent } from "./ui/card";
 
 export async function CarouselGroup() {
-    // const [] = useState()
   return (
     <Carousel
       opts={{
