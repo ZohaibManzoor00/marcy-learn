@@ -1,49 +1,82 @@
+import { ProgressBar } from "@/components/progress-bar";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Activity, Users, BookOpenCheck, BookCopy } from "lucide-react";
+
 interface StatsProps {
-  totalUsers: number;
-  totalCourses: number;
-  totalCoursesIP: number;
+  userStats: { totalUsers: number; change: number };
+  totalCourses: { allCourses: number; change: number };
+  totalCoursesIP: { totalCoursesInProgress: number; change: number };
   totalCoursesCompleted: number;
 }
 
 export default function Stats({
-  totalUsers,
+  userStats,
   totalCourses,
   totalCoursesIP,
   totalCoursesCompleted,
 }: StatsProps) {
   const stats = [
-    { id: 1, name: "Learners on the platform", value: `${totalUsers}+` },
-    { id: 2, name: "Courses available", value: `${totalCourses}` },
-    { id: 3, name: totalCoursesIP === 1 ? "Course in progress" : "Courses in progress", value: totalCoursesIP },
-    { id: 4, name: "Courses completed", value: totalCoursesCompleted },
+    {
+      name: "Learners",
+      value: `${userStats.totalUsers}+`,
+      change: `+${userStats.change} this month`,
+      icon: Users,
+    },
+    {
+      name: "Available courses",
+      value: `${totalCourses.allCourses}`,
+      icon: BookCopy,
+      change: `+${totalCourses.change}% past few months`,
+    },
+    {
+      name:
+        totalCoursesIP.totalCoursesInProgress === 1
+          ? "Course in progress"
+          : "Courses in progress",
+      value: totalCoursesIP.totalCoursesInProgress,
+      icon: Activity,
+      change: `+${totalCoursesIP.change}% this week`,
+    },
+    {
+      name: "Completed courses",
+      value: totalCoursesCompleted,
+      icon: BookOpenCheck,
+      change: `Make it ${totalCoursesCompleted + 1}!`,
+    },
   ];
 
+  const percentCompleted =
+    (totalCoursesCompleted / totalCourses.allCourses) * 100;
+
   return (
-    <div className="bg-white dark:bg-background py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:max-w-none">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl">
-              Trusted by your peers
-            </h2>
-            <p className="mt-4 text-lg leading-8 text-gray-600 dark:text-gray-300">
-              Lorem ipsum dolor sit amet consect adipisicing possimus.
-            </p>
-          </div>
-          <dl className="mt-16 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-2 lg:grid-cols-4">
-            {stats.map((stat) => (
-              <div key={stat.id} className="flex flex-col bg-gray-400/5 p-8">
-                <dt className="text-sm font-semibold leading-6 text-gray-600 dark:text-gray-300">
-                  {stat.name}
-                </dt>
-                <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
-                  {stat.value}
-                </dd>
+    <div className="grid gap-4 grid-cols-2 md:gap-8 lg:grid-cols-4">
+      {stats.map(({ name, value, change, icon: Icon }, idx) => (
+        <Card key={idx} x-chunk="dashboard-01-chunk-0">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">{name}</CardTitle>
+            <Icon className="h-4 w-4 text-zinc-700 dark:text-gray-200 hover:animate-pulse" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{value}</div>
+            {idx < stats.length - 1 ? (
+              <>
+                <p className="text-xs text-muted-foreground">{change}</p>{" "}
+              </>
+            ) : (
+              <div className="flex gap-2 items-center">
+                <ProgressBar
+                  value={percentCompleted}
+                  variant="success"
+                  className="w-11/12"
+                />
+                <p className="text-xs text-muted-foreground">
+                  {percentCompleted.toFixed(0)}%
+                </p>
               </div>
-            ))}
-          </dl>
-        </div>
-      </div>
+            )}
+          </CardContent>
+        </Card>
+      ))}
     </div>
   );
 }

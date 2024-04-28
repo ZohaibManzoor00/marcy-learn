@@ -1,4 +1,11 @@
+import { Chapter } from "@prisma/client";
 import PathwayCourseCard from "./pathway-card";
+
+type PathwayCoursesProps = {
+  title: string; 
+  imageUrl: string; 
+  chapters: Chapter[];
+}
 
 interface PathwaysListProps {
   items: {
@@ -8,7 +15,7 @@ interface PathwaysListProps {
     description: string | null;
     progress?: number | null;
     courseCount?: number;
-    // category?: string | null 
+    createdAt: Date;
   }[];
 }
 
@@ -25,7 +32,7 @@ export const PathwaysList = ({ items }: PathwaysListProps) => {
             description={item?.description}
             courseLength={item?.courseCount || 0}
             progress={item?.progress || 0}
-            // category={item?.category?.name!}
+            createdAt={item.createdAt}
           />
         ))}
       </div>
