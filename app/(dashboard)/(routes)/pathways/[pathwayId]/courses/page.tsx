@@ -1,21 +1,19 @@
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
-
 import { getPathwayCourses } from "@/actions/get-pathway-courses";
+import { db } from "@/lib/db";
+
 import SearchInput from "@/components/search-input";
 import { CoursesList } from "@/components/courses-list";
-import { db } from "@/lib/db";
 import Categories from "@/components/categories";
+
 
 interface PathwaysCoursesProps {
   searchParams: { title: string };
   params: { pathwayId: string };
 }
 
-export default async function PathwayCourses({
-  searchParams,
-  params,
-}: PathwaysCoursesProps) {
+export default async function PathwayCourses({ searchParams, params }: PathwaysCoursesProps) {
   const { userId } = auth();
   if (!userId) return redirect("/");
 

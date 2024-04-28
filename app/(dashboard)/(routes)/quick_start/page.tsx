@@ -5,7 +5,8 @@ import { RoleTabs } from "./_components/tabs";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-// import { getAppStats } from "@/actions/get-app-stats";
+import { getAppStats } from "@/actions/get-app-stats";
+import Stats from "./_components/stats";
 
 const pages = [
   {
@@ -26,26 +27,31 @@ const pages = [
   },
 ];
 
-export default async function Pathways() {
+export default async function QuickStart() {
   const { userId } = auth();
 
   if (!userId) return redirect("/");
 
-  // const {
-  //   totalUsers,
-  //   totalPathways,
-  //   totalCourses,
-  //   totalCoursesIP,
-  //   totalCoursesCompleted,
-  // } = await getAppStats();
+  const {
+    userStats,
+    totalCourses,
+    totalCoursesIP,
+    totalCoursesCompleted,
+  } = await getAppStats();
   // console.log({totalCoursesCompleted, totalCoursesIP})
 
   return (
-    <>
-      <div className="p-2 mt-3 mx-3">
+    <div className="p-4">
+      <Stats
+        userStats={userStats}
+        totalCourses={totalCourses}
+        totalCoursesIP={totalCoursesIP}
+        totalCoursesCompleted={totalCoursesCompleted || 0}
+      />
+      <div className="mt-4">
         <RoleTabs />
       </div>
-      <div className="mt-6 px-4">
+      <div className="mt-4">
         <Tabs defaultValue="dark-mode" className="">
           <TabsList className="mt-3">
             <TabsTrigger value="dark-mode">Dark Mode</TabsTrigger>
@@ -61,7 +67,10 @@ export default async function Pathways() {
                 <Tabs className="flex justify-center">
                   <TabsList className="mt-3">
                     {pages.map((page) => (
-                      <TabsTrigger key={page.name} value={page.name.toLowerCase()}>
+                      <TabsTrigger
+                        key={page.name}
+                        value={page.name.toLowerCase()}
+                      >
                         {page.name}
                       </TabsTrigger>
                     ))}
@@ -81,16 +90,10 @@ export default async function Pathways() {
         </Tabs>
       </div>
       <div className="py-10"></div>
-      {/* <Stats
-        totalUsers={totalUsers}
-        totalCourses={totalCourses}
-        totalCoursesIP={totalCoursesIP}
-        totalCoursesCompleted={totalCoursesCompleted || 0}
-      />
 
-      <div className="pb-20 flex justify-center px-20">
-        <CarouselGroup />
-      </div> */}
-    </>
+      {/* <div className="pb-20 flex justify-center px-20">
+    </div> */}
+      {/* <CarouselGroup /> */}
+    </div>
   );
 }

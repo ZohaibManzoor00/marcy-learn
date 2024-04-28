@@ -1,6 +1,6 @@
 import { db } from "@/lib/db";
 import { getPathwayCourses } from "./get-pathway-courses";
-import { Pathway } from "@prisma/client";
+import { Chapter, Pathway } from "@prisma/client";
 
 interface GetProgressByPathwayProps {
   userId: string; 
@@ -15,10 +15,7 @@ type PathwayProps = Pathway & {
 export async function getProgressByPathway({ userId, searchParams }: GetProgressByPathwayProps) {
   try {
     const pathways = (await db.pathway.findMany({
-      where: {
-         isPublished: true, 
-         title: { contains: searchParams?.title } ,
-      },
+      where: { isPublished: true, title: { contains: searchParams?.title } },
       orderBy: { createdAt: "desc" },
     })) as PathwayProps[];
 

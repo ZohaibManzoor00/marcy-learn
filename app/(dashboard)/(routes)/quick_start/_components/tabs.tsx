@@ -7,6 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { CarouselGroup } from "@/components/carousel";
 
 const learnerSteps = [
   {
@@ -33,8 +34,8 @@ export function RoleTabs() {
         <TabsTrigger value="teacher">Teacher</TabsTrigger>
       </TabsList>
       <TabsContent value="learner">
-        <div className="flex">
-          <Card className="w-2/6">
+        <div className="flex space-between">
+          <Card className="">
             <CardHeader>
               <CardTitle>Navigate as a Learner</CardTitle>
               <CardDescription>
@@ -52,13 +53,7 @@ export function RoleTabs() {
               ))}
             </CardContent>
           </Card>
-          <Image
-            src="/pathwaysView.png"
-            className="w-4/6"
-            alt="pathwaysView"
-            width={1000}
-            height={1000}
-          />
+          <CarouselGroup />
         </div>
       </TabsContent>
       <TabsContent value="teacher">
