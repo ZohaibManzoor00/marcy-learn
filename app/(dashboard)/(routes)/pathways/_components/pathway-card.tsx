@@ -75,12 +75,12 @@ export default function PathwayCourseCard({
                     Enroll Today
                   </p>
                 )}
-                <div className="flex justify-end pt-2">
+                {/* <div className="flex justify-end pt-2">
                   <CalendarDays className="mr-1 h-4 w-4 opacity-70" />{" "}
                   <span className="text-xs text-muted-foreground">
                     {formatDate(createdAt)}
                   </span>
-                </div>
+                </div> */}
               </div>
             </div>
           </TooltipTrigger>
