@@ -13,11 +13,11 @@ export async function CarouselGroup() {
       opts={{
         align: "center",
       }}
-    //   plugins={[
-    //     Autoplay({
-    //       delay: 2000,
-    //     }),
-    //   ]}
+      // plugins={[
+      //   Autoplay({
+      //     delay: 2000,
+      //   }),
+      // ]}
       className="w-[600px]"
     >
       <CarouselContent>

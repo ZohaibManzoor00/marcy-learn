@@ -1,4 +1,3 @@
-import Image from "next/image";
 import {
   Card,
   CardContent,
@@ -8,25 +7,32 @@ import {
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CarouselGroup } from "@/components/carousel";
+import Image from "next/image";
 
 const learnerSteps = [
   {
     title: "Search for a Pathway",
-    description: "Choose a pathway covered at Marcy or request one to be made!",
+    description: "Select a pathway or request one to be made",
   },
   {
     title: "Check out a Course",
     description:
-      "Browse for a course! Courses are ordered therefore its highly suggested you complete them in the intended order.",
+      "Browse through the available courses. They are organized in a recommended sequence, so it's best to complete them in the order shown.",
   },
   {
     title: "Begin the course",
     description:
-      "With a progress tracker and an HD video player, unlock the possibilities of your growth.",
+      "Track your progress and maximize your learning experience with an HD video player",
+  },
+  {
+    title: "Mark chapters as completed",
+    description:
+      "Effortlessly track your progress by toggling chapters as completed. Once you finish a video, the chapter will automatically be marked as completed, advancing you to the next chapter of the course.",
   },
 ];
 
 export function RoleTabs() {
+  const testImg = "/pathwaysView.png";
   return (
     <Tabs defaultValue="learner">
       <TabsList>
@@ -34,27 +40,37 @@ export function RoleTabs() {
         <TabsTrigger value="teacher">Teacher</TabsTrigger>
       </TabsList>
       <TabsContent value="learner">
-        <div className="flex space-between">
-          <Card className="">
-            <CardHeader>
+        <Card>
+          <CardHeader>
+            <div className="text-center">
               <CardTitle>Navigate as a Learner</CardTitle>
               <CardDescription>
-                Navigate pathways, courses, and chapters
+                Explore pathways, courses, and chapters
               </CardDescription>
-            </CardHeader>
-            <CardContent>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="ml-auto">
               {learnerSteps.map((step, idx) => (
                 <div className="mb-4" key={idx}>
-                  <h1 className="font-semibold">
-                    {idx + 1}. {step.title}
-                  </h1>
-                  <CardDescription>{step.description}</CardDescription>
+                  <div>
+                    <h1 className="font-semibold">
+                      {idx + 1}. {step.title}
+                    </h1>
+                    <Image
+                      src={testImg}
+                      height={500}
+                      width={500}
+                      alt={`${step.title} image`}
+                    />
+                    <CardDescription>{step.description}</CardDescription>
+                  </div>
                 </div>
               ))}
-            </CardContent>
-          </Card>
-          <CarouselGroup />
-        </div>
+            </div>
+          </CardContent>
+        </Card>
+        {/* <CarouselGroup /> */}
       </TabsContent>
       <TabsContent value="teacher">
         <Card className="w-1/2">
