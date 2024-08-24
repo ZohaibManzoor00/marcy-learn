@@ -42,11 +42,6 @@ const teacherRoutes = [
     label: "Pathways",
     href: "/teacher/pathways",
   },
-  {
-    icon: BarChart,
-    label: "Analytics",
-    href: "/teacher/analytics",
-  },
 ];
 
 export default function SidebarRoutes() {

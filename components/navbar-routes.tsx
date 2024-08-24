@@ -11,6 +11,7 @@ import SearchInput from "./search-input";
 import { isTeacher } from "@/lib/teacher";
 import { dark } from "@clerk/themes";
 import { useTheme } from "next-themes";
+import { NotionSearchInput } from "./notion-search-input";
 
 export default function NavbarRoutes() {
   const { userId } = useAuth();
@@ -26,8 +27,9 @@ export default function NavbarRoutes() {
   return (
     <>
       {(isPathwayPage || isDashboard) && (
-        <div className="hidden md:block">
+        <div className="hidden md:block ml-2">
           <SearchInput />
+          {/* <NotionSearchInput /> */}
         </div>
       )}
       <div className="flex gap-x-2 ml-auto">
