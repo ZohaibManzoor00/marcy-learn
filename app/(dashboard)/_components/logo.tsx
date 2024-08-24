@@ -12,5 +12,5 @@ export default function Logo() {
     setLogoSrc(resolvedTheme === 'dark' ? '/marcy-logo-dark.png' : '/marcy-logo.png');
   }, [resolvedTheme]);
 
-  return <Image height={25} width={25} alt="logo" src={logoSrc} />;
+  return <Image height={22} width={22} alt="logo" src={logoSrc} />;
 }
