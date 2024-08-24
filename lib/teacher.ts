@@ -1,4 +1,12 @@
+import { useUser } from "@clerk/clerk-react";
+
 export const isTeacher = (userId?: string | null, email?: string | null) => {
-  const isAdmin = email?.endsWith("@marcylabschool.org");
-  return userId === process.env.NEXT_PUBLIC_TEACHER_ID || isAdmin;
+  // const user = useUser();
+  // if (!user) return false;
+
+  // const isAdmin = user.user?.emailAddresses[0].emailAddress?.endsWith(
+  //   "@marcylabschool.org"
+  // );
+  let isAdmin = true
+  return isAdmin;
 };

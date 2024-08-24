@@ -3,7 +3,7 @@ import Skeleton from "./skeleton";
 export default function CardSkeleton() {
   return (
     <div className="mb-14">
-      <Skeleton className="rounded h-40 w-full" />
+      <Skeleton className="rounded h-36 w-full" />
       <div className="px-2">
         <Skeleton className="h-5 w-4/6 mt-2" />
 

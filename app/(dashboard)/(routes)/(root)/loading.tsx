@@ -9,8 +9,8 @@ export default function Loading() {
         <Skeleton />
       </div>
       <div className="flex gap-3">
-        {Array.from({ length: 10 }, (_, idx) => (
-          <Skeleton key={idx} className="min-w-24 h-7 rounded-md" />
+        {Array.from({ length: 3 }, (_, idx) => (
+          <Skeleton key={idx} className="min-w-20 h-7 rounded-md" />
         ))}
       </div>
         <div className="pt-3 grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4">

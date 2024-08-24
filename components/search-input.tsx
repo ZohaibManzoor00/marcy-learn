@@ -41,7 +41,7 @@ export default function SearchInput() {
       <Input
         onChange={(e) => setValue(e.target.value)}
         value={value}
-        className="w-full md:w-[300px] pl-9 rounded-full bg-slate-100 dark:bg-slate-800"
+        className="w-full md:w-[300px] pl-9 rounded-sm bg-slate-100 dark:bg-slate-800"
         placeholder={getPlaceholder(pathname)}
       />
     </div>
