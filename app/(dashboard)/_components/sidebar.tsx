@@ -36,7 +36,7 @@ export default function Sidebar() {
       <div className="p-6 flex items-center gap-1">
         <Logo />
         <Link href="/" className="cursor">
-          <h1 className="font-semibold text-2xl">Marcy {"</>"}</h1>
+          <h1 className="font-semibold text-xl">Marcy {"</>"}</h1>
         </Link>
       </div>
       <div className="flex flex-col w-full">

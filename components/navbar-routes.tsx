@@ -51,7 +51,7 @@ export default function NavbarRoutes() {
         <div className="mt-1">
           <UserButton
             appearance={{ baseTheme: theme === "dark" ? dark : undefined }}
-            afterSignOutUrl="/"
+            afterSignOutUrl="/sign-in"
           />
         </div>
       </div>
