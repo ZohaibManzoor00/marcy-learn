@@ -62,7 +62,7 @@ export default function DescriptionForm({
   return (
     <div className="mt-6 border bg-slate-100 dark:bg-slate-900 rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
-        Course description
+        Course Description
         <Button variant="ghost" onClick={toggleEdit}>
           {isEditing ? (
             <>Cancel</>
@@ -97,7 +97,7 @@ export default function DescriptionForm({
                   <FormControl>
                     <Textarea
                       disabled={isSubmitting}
-                      placeholder={"e.g. 'This course is about..."}
+                      placeholder={"e.g. 'This course is about...'"}
                       {...field}
                     />
                   </FormControl>

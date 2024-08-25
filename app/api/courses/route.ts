@@ -9,21 +9,21 @@ export async function POST(req: Request) {
     const { title, pathwayId } = await req.json();
 
     if (!userId || !isTeacher(userId)) return new NextResponse("Unauthorized", { status: 401 });
+    // console.log({userId, title, pathwayId})
+    // const courseOwner = await db.pathway.findUnique({
+    //   where: { id: pathwayId, userId },
+    // });
 
-    const courseOwner = await db.pathway.findUnique({
-      where: { id: pathwayId, userId },
-    });
+    // if (!courseOwner) return new NextResponse("Unauthorized", { status: 401 });
 
-    if (!courseOwner) return new NextResponse("Unauthorized", { status: 401 });
+    // const lastCourse = await db.course.findFirst({
+    //   where: { pathwayId },
+    //   orderBy: { position: "desc" },
+    // });
 
-    const lastCourse = await db.course.findFirst({
-      where: { pathwayId },
-      orderBy: { position: "desc" },
-    });
+    // const newPosition = lastCourse ? lastCourse.position + 1 : 1;
 
-    const newPosition = lastCourse ? lastCourse.position + 1 : 1;
-
-    const course = await db.course.create({ data: { userId, title, pathwayId, position: newPosition } });
+    const course = await db.course.create({ data: { userId, title, pathwayId, position: 0 } });
 
     return NextResponse.json(course);
   } catch (err) {

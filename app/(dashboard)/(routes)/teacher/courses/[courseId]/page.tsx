@@ -14,7 +14,11 @@ import Banner from "@/components/banner";
 import Actions from "./_components/actions";
 import PathwayForm from "./_components/pathway-form";
 
-export default async function CourseIdPage({ params }: { params: { courseId: string } }) {
+export default async function CourseIdPage({
+  params,
+}: {
+  params: { courseId: string };
+}) {
   const { userId } = auth();
   if (!userId) return redirect("/");
 
@@ -30,7 +34,6 @@ export default async function CourseIdPage({ params }: { params: { courseId: str
 
   const categories = await db.category.findMany({ orderBy: { name: "asc" } });
   const pathways = await db.pathway.findMany({ orderBy: { title: "asc" } });
-  
 
   const requiredFields = [
     course.title,
@@ -94,14 +97,14 @@ export default async function CourseIdPage({ params }: { params: { courseId: str
               </div>
               <AttachmentForm initialData={course} courseId={course.id} />
             </div>
-              <PathwayForm
-                initialData={course}
-                courseId={course.id}
-                options={pathways.map((pathway) => ({
-                  label: pathway.title,
-                  value: pathway.id,
-                }))}
-              />
+            <PathwayForm
+              initialData={course}
+              courseId={course.id}
+              options={pathways.map((pathway) => ({
+                label: pathway.title,
+                value: pathway.id,
+              }))}
+            />
             <CategoryForm
               initialData={course}
               courseId={course.id}
