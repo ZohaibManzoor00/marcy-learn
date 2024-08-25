@@ -110,7 +110,7 @@ export default function CoursesForm({
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder="e.g. 'Becoming more technical' "
+                      placeholder="e.g. 'Mod 1' "
                       {...field}
                     />
                   </FormControl>

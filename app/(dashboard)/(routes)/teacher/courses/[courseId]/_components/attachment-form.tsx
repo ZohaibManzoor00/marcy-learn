@@ -59,7 +59,7 @@ export default function AttachmentForm({
   return (
     <div className="mt-6 border bg-slate-100 dark:bg-slate-900 rounded-md p-4">
       <div className="font-medium flex items-center justify-between mb-2">
-        Course attachments
+        Course Attachments
         <Button variant="ghost" onClick={toggleEdit}>
           {isEditing && <>Cancel</>}
 

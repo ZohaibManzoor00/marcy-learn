@@ -85,7 +85,7 @@ export default function ChaptersForm({
         </div>
       )}
       <div className="font-medium flex items-center justify-between">
-        Course chapters
+        Course Chapters
         <Button variant="ghost" onClick={toggleCreating}>
           {isCreating ? (
             <>Cancel</>
