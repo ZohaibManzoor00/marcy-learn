@@ -31,10 +31,10 @@ export default function PathwayCourseCard({
   return (
     <Link href={`/pathways/${id}/courses`}>
       <div className="group hover:shadow-sm hover:bg-slate-200/20 dark:hover:bg-slate-800/25 transition overflow-hidden border rounded-lg h-full">
-        <div className="relative w-full aspect-video rounded-md overflow-hidden">
+        <div className="relative w-full aspect-video overflow-hidden">
           <Image fill className="object-cover" alt={title} src={imageUrl} />
         </div>
-        <div className="flex flex-col pt-2 p-3">
+        <div className="flex flex-col pt-4 p-3">
           <div className="text-lg md:text-base font-medium group-hover:text-sky-800 dark:group-hover:text-sky-200 transition line-clamp-2">
             {title}
           </div>
