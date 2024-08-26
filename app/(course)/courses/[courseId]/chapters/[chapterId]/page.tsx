@@ -83,7 +83,7 @@ export default async function ChapterIdPage({
               <div>
                 <Preview value={String(chapter.description)} />
               </div>
-              <Separator />
+              {!!attachments.length && <Separator />}
               {!!attachments.length && (
                 <CollapsibleAttachments attachments={attachments} />
               )}
